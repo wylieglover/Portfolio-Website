@@ -9,4 +9,6 @@ RUN npm install react-scripts@5.0.1 -g --silent
 COPY package.json package-lock.json .
 COPY . .
 
+WORKDIR /usr/src/app
+
 CMD ["npm", "start"]
