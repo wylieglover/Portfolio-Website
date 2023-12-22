@@ -1,0 +1,14 @@
+name: run-docker-compose
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - name: Run Docker Compose
+        run: docker compose -f ./portfolio-website/docker-compose.yml up -d --force-recreate --build
