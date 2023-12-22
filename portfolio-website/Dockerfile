@@ -1,14 +1,14 @@
 # Use an official Node.js runtime as the base image
 FROM node:18-alpine
 
-WORKDIR /usr/src/app
+ENV NODE_ENV development
 
-RUN npm install -g npm@latest
-RUN npm install react-scripts@5.0.1 -g --silent
+WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package*.json /app
+
+RUN npm install
+
 COPY . .
-
-WORKDIR /usr/src/app
 
 CMD ["npm", "start"]
