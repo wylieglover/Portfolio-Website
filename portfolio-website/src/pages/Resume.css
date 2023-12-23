@@ -1,0 +1,47 @@
+.resume,
+.projects {
+    height: 100vh;
+    padding: 20px;
+}
+
+.resume {
+    margin-top: 100px;
+    margin-left: 150px;
+    padding: 20px;
+}
+
+.resume-content {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    width: 40%;
+}
+
+.resume-header-name {
+    font-size: 25px;
+}
+
+.resume-header-email {
+    font-size: 20px;
+}
+
+.skills,
+.technologies {
+    flex: 1;
+    max-width: 45%;
+    padding: 20px;
+    background-color: #8ec2cf;
+    font-size: 12px;
+}
+
+.skills h2,
+.technologies h2 {
+    margin-bottom: 10px;
+}
+
+.skills ul,
+.technologies ul {
+    list-style-type: none;
+    padding: 0;
+}
