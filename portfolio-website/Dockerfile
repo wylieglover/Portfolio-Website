@@ -1,4 +1,3 @@
-# Use an official Node.js runtime as the base image
 FROM node:18-alpine
 
 ENV NODE_ENV development
