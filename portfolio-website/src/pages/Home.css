@@ -9,6 +9,8 @@
 }
 
 .name {
+    position: relative;
+    display: inline-block;
     font-family: Arial, sans-serif;
     font-size: 75px;
 }
@@ -17,17 +19,42 @@
     font-weight: bold;
 }
 
+.hoverable-text {
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+
+.circular-image {
+    position: fixed;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hoverable-text:hover+.circular-image {
+    visibility: visible;
+    opacity: 1;
+}
+
 .bio {
+    font-weight: bold;
     margin-top: 20px;
     font-size: 18px;
 }
 
 .social-icons {
+    display: flex;
+    align-items: center;
     margin-top: 20px;
     margin-right: 20px;
     display: flex;
     justify-content: center;
 }
+
 
 .social-icons svg {
     font-size: 2.5em;
