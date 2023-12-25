@@ -1,13 +1,22 @@
-.resume,
-.projects {
+.resume {
     height: 100vh;
     padding: 20px;
-}
-
-.resume {
+    display: flex;
     margin-top: 100px;
     margin-left: 150px;
-    padding: 20px;
+}
+
+.left-column {
+    flex: 0.7;
+    margin-right: 20px;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* Align content to the right */
 }
 
 .resume-content {
@@ -15,7 +24,7 @@
     justify-content: center;
     align-items: stretch;
     gap: 20px;
-    width: 40%;
+    width: 60%;
 }
 
 .resume-header-name {
@@ -29,7 +38,7 @@
 .skills,
 .technologies {
     flex: 1;
-    max-width: 45%;
+    width: 40%;
     padding: 20px;
     background-color: #8ec2cf;
     font-size: 12px;
@@ -44,4 +53,47 @@
 .technologies ul {
     list-style-type: none;
     padding: 0;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 60px;
+    margin-bottom: auto;
+    /* Pushes the image container up */
+}
+
+.swap-image {
+    max-width: 70%;
+    width: auto;
+    /* Adjust width to maintain aspect ratio */
+    height: auto;
+    /* Adjust width to maintain aspect ratio */
+    transition: transform 0.5s ease;
+    /* Add transition for smooth effect */
+}
+
+.swap-image:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    align-self: flex-start;
+}
+
+.download-button {
+    margin-bottom: 10px;
+    background-color: black;
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: transparent;
+    border-color: black;
+    color: black;
 }
