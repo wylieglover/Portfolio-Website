@@ -1,6 +1,6 @@
 .navbar {
     position: absolute;
-    top: 20px;
+    top: 35px;
     right: 250px;
     list-style: none;
     padding: 0;
@@ -14,7 +14,7 @@
 
 .navbar .nav-link {
     text-decoration: none;
-    /* Remove underline */
+    font-weight: bold;
 }
 
 .navbar .nav-link {
