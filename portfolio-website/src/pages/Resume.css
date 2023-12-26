@@ -4,6 +4,14 @@
     display: flex;
     margin-top: 100px;
     margin-left: 150px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.resume-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
 
 .left-column {
@@ -14,9 +22,7 @@
 .right-column {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    /* Align content to the right */
+    align-items: center;
 }
 
 .resume-content {
@@ -29,10 +35,16 @@
 
 .resume-header-name {
     font-size: 25px;
+    margin-bottom: -5px;
 }
 
 .resume-header-email {
     font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.resume-header-email h3 {
+    margin: 3px 0;
 }
 
 .skills,
@@ -62,22 +74,18 @@
     align-items: flex-start;
     margin-top: 60px;
     margin-bottom: auto;
-    /* Pushes the image container up */
 }
 
 .swap-image {
     max-width: 70%;
     width: auto;
-    /* Adjust width to maintain aspect ratio */
     height: auto;
-    /* Adjust width to maintain aspect ratio */
     transition: transform 0.5s ease;
-    /* Add transition for smooth effect */
 }
 
 .swap-image:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.02);
     align-self: flex-start;
 }
 

@@ -1,0 +1,47 @@
+.body {
+    background-image: url('../images/art.jpg');
+}
+
+.projects-container {
+    padding: 20px;
+    /* Additional styling for the container if needed */
+}
+
+.project-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Adjust the gap between project boxes as needed */
+}
+
+.project-box {
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    background-color: #141414;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    color: #fff;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    /* Lift the box on hover */
+}
+
+.project-box a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    /* Additional styling for the project link if needed */
+}
+
+.project-box a:hover {
+    text-decoration: none;
+    /* Remove underline from project link on hover */
+}

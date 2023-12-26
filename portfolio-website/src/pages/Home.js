@@ -3,7 +3,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./Home.css"
-import wylie_image from "./wylie.jpg";
+import wylie_image from "../images/wylie.jpg";
 
 const Home = () => {
     const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });

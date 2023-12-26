@@ -1,10 +1,7 @@
-/* .App {
-  
-} */
-
 body {
   background-image: url('./images/art.jpg');
   background-size: cover;
-  background-position: center;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
