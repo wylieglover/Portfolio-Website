@@ -18,7 +18,11 @@ const Projects = () => {
             description: "A Twitch bot that can track deaths, wins, and losses!",
             link: "https://github.com/wylieglover/FrannyBot"
         },
-        // Add more projects as needed
+        {
+            title: "This Website!",
+            description: "This website was built using React and is dockerized and deployed using GitHub Actions.",
+            link: "https://github.com/wylieglover/Portfolio-Website"
+        },
     ];
 
     const openProjectLink = (link) => {
@@ -27,7 +31,6 @@ const Projects = () => {
 
     return (
         <div className="projects-container">
-            <h1>PROJECTS</h1>
             <div className="project-boxes">
                 {projects.map((project, index) => (
                     <div
@@ -37,7 +40,6 @@ const Projects = () => {
                     >
                         <h2>{project.title}</h2>
                         <p>{project.description}</p>
-                        <span className="view-project">View Project</span>
                     </div>
                 ))}
             </div>

@@ -1,47 +1,68 @@
+/* Projects.css */
+
+/* Body styles */
 .body {
     background-image: url('../images/art.jpg');
+    /* Add any additional body styles here */
+    margin-top: 100px;
+    /* Adjust the margin to lower the content */
 }
 
+/* Projects container styles */
 .projects-container {
-    padding: 20px;
-    /* Additional styling for the container if needed */
+    padding: 50px;
+    margin-top: 75px;
+    display: flex;
+    justify-content: flex-start;
+    /* Align container content to the left */
+    /* Adjust left margin to position the content */
 }
 
 .project-boxes {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    /* Adjust the gap between project boxes as needed */
+    gap: 10px;
+    /* Add space between boxes */
+    max-width: 100%;
+    /* Set a maximum width for the boxes */
+    overflow-x: auto;
+    /* Enable horizontal scrolling if needed */
 }
 
+/* Project box styles */
 .project-box {
-    border: 2px solid #aaa;
+    background-color: #292929;
     border-radius: 10px;
-    background-color: #141414;
-    padding: 20px;
-    width: 300px;
-    height: 200px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     color: #fff;
-    transition: transform 0.3s ease;
-    display: flex;
+    cursor: pointer;
+    flex: 0 0 300px;
+    /* Fixed width for each box */
+    height: 200px;
+    /* Set the height of each box */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 20px 10px;
+    /* Adjust top and bottom margin */
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;
+    overflow: hidden;
 }
 
 .project-box:hover {
     transform: translateY(-5px);
-    /* Lift the box on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.project-box a {
-    display: block;
-    text-decoration: none;
-    color: #fff;
-    /* Additional styling for the project link if needed */
+.project-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    /* Move title to the right */
 }
 
-.project-box a:hover {
-    text-decoration: none;
-    /* Remove underline from project link on hover */
+.project-box p {
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+    padding: 0 10px;
 }
