@@ -14,6 +14,11 @@ const Projects = () => {
             link: "https://github.com/wylieglover/PEParser"
         },
         {
+            title: "Youtube Clip Scraper",
+            description: "A Python script that scrapes a Youtube video's most replayed segments and clips them.",
+            link: "https://github.com/wylieglover/YouTube-Clip-Scraper"
+        },
+        {
             title: "FrannyBot",
             description: "A Twitch bot that can track deaths, wins, and losses!",
             link: "https://github.com/wylieglover/FrannyBot"
