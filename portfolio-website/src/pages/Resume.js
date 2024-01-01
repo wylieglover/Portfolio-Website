@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
 import "./Resume.css";
-import resume1 from "../images/resume1.png";
-import resume2 from "../images/resume2.png";
+import resume1 from "../images/resume1.jpg";
+import resume2 from "../images/resume2.jpg";
+import resume3 from "../images/resume3.jpg";
 import resumePDF from "../images/resume.pdf";
 
 const Resume = () => {
-
-    const [isFirstImage, setIsFirstImage] = useState(true);
+    const [imagesIndex, setImagesIndex] = useState(0);
+    const images = [resume1, resume2, resume3]; // Add all resume images to the images array
 
     const handleClick = () => {
-        setIsFirstImage(prevState => !prevState);
+        setImagesIndex((imagesIndex + 1) % images.length);
     };
 
     const handleDownload = () => {
@@ -59,8 +60,8 @@ const Resume = () => {
                         DOWNLOAD PDF
                     </div>
                     <img
-                        src={isFirstImage ? resume1 : resume2}
-                        alt={isFirstImage ? 'First Image' : 'Second Image'}
+                        src={images[imagesIndex]}
+                        alt=""
                         onClick={handleClick}
                         className="swap-image"
                     />
