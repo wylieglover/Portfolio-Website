@@ -20,7 +20,7 @@ const Projects = () => {
         },
         {
             title: "FrannyBot",
-            description: "A Twitch bot that can track deaths, wins, and losses!",
+            description: "A Twitch chatbot that tracks deaths, wins, and losses in video games using chat commands!",
             link: "https://github.com/wylieglover/FrannyBot"
         },
         {
