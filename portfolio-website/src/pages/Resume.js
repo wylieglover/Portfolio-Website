@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
 import "./Resume.css";
-import resume1 from "../images/resume1.jpg";
-import resume2 from "../images/resume2.jpg";
-import resume3 from "../images/resume3.jpg";
+import resume from "../images/resume.jpg";
 import resumePDF from "../images/resume.pdf";
 
 const Resume = () => {
     const [imagesIndex, setImagesIndex] = useState(0);
-    const images = [resume1, resume2, resume3]; // Add all resume images to the images array
+    const images = [resume, resume]; // Add all resume images to the images array
 
     const handleClick = () => {
         setImagesIndex((imagesIndex + 1) % images.length);
