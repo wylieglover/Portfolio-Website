@@ -17,7 +17,6 @@
     flex-wrap: wrap; /* Ensure flex items wrap */
     gap: 10px;
     width: 100%; /* Ensure the container takes full width */
-    justify-content: center; /* Center the items */
 }
 
 .project-box {
@@ -33,7 +32,7 @@
     margin: 10px; /* Adjust the margin for spacing */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     overflow: hidden;
 }
 

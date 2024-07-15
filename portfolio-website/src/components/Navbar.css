@@ -1,15 +1,15 @@
 .navbar {
-    position: absolute;
-    top: 35px;
-    right: 250px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    position: fixed; /* Position fixed for persistent placement */
+    top: 35px; /* 35 pixels from the top */
+    right: 10px;
+    width: 100%; /* Full width of the viewport */
+    text-align: center; /* Center align the content inside .navbar */
+    padding: 10px 0; /* Padding for the navbar content */
+    margin: 0; /* Remove default margin */
 }
-
 .navbar li {
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 20px;
 }
 
 .navbar .nav-link {
