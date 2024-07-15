@@ -5,7 +5,7 @@ const Projects = () => {
     const projects = [
         {
             title: "Viz Data Academy",
-            description: "Viz Data Academy is a data visualization learning platform that provides hands-on learning experience for data visualization and data storytelling.",
+            description: "Viz Data Academy is a learning platform that provides data visualization and data storytelling.",
             link: "https://github.com/wylieglover/VizDataAcademy"
         },
         {
@@ -27,6 +27,26 @@ const Projects = () => {
             title: "This Website!",
             description: "This website was built using React and is dockerized and deployed using GitHub Actions.",
             link: "https://github.com/wylieglover/Portfolio-Website"
+        },
+        {
+            title: "Snake AI",
+            description: "Tail escape algorithm built to solve the simple game of Snake using search and heuristics.",
+            link: "https://github.com/wylieglover/SnakeAI-With-TailEscape"
+        },
+        {
+            title: "Neural Network",
+            description: "Neural network from scratch with Forward and Backward Propagation (ReLU, Sigmoid, and Softmax support).",
+            link: "https://github.com/wylieglover/NeuralNetwork-From-Scratch"
+        },
+        {
+            title: "3D Rubik's Cube Solver",
+            description: "3D Rubik's Cube solver using heuristics and IDA* search algorithm to find least possible moves.",
+            link: "https://github.com/wylieglover/3D-Rubiks-Solver"
+        },
+        {
+            title: "LangChain Chat-Bot",
+            description: "A llama-2 chat bot capable of using tools and remembering chat history with conversation buffers.",
+            link: "https://github.com/wylieglover/langchain-bot"
         },
     ];
 

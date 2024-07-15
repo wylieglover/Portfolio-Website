@@ -5,11 +5,14 @@ import resume from "../images/resume.jpg";
 import resumePDF from "../images/resume.pdf";
 
 const Resume = () => {
-    const [imagesIndex, setImagesIndex] = useState(0);
-    const images = [resume, resume]; // Add all resume images to the images array
+    const [isBloomed, setIsBloomed] = useState(false);
 
-    const handleClick = () => {
-        setImagesIndex((imagesIndex + 1) % images.length);
+    const handleImageClick = () => {
+        setIsBloomed(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsBloomed(false);
     };
 
     const handleDownload = () => {
@@ -58,13 +61,22 @@ const Resume = () => {
                         DOWNLOAD PDF
                     </div>
                     <img
-                        src={images[imagesIndex]}
-                        alt=""
-                        onClick={handleClick}
-                        className="swap-image"
+                        src={resume}
+                        alt="Resume"
+                        onClick={handleImageClick}
+                        className="download-image"
                     />
                 </div>
             </div>
+            {isBloomed && (
+                <div className="resume-modal" onClick={handleCloseModal}>
+                    <img
+                        src={resume}
+                        alt="Bloomed Resume"
+                        className="bloomed-image"
+                    />
+                </div>
+            )}
         </div>
     );
 };

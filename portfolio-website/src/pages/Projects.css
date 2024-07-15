@@ -7,14 +7,17 @@
     padding: 50px;
     margin-top: 75px;
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center the items */
+    gap: 20px; /* Add some gap between rows */
 }
 
 .project-boxes {
     display: flex;
+    flex-wrap: wrap; /* Ensure flex items wrap */
     gap: 10px;
-    max-width: 100%;
-    overflow-x: auto;
+    width: 100%; /* Ensure the container takes full width */
+    justify-content: center; /* Center the items */
 }
 
 .project-box {
@@ -23,10 +26,12 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     color: #fff;
     cursor: pointer;
-    flex: 0 0 300px;
+    flex: 1 1 300px; /* Allow to grow and shrink, with a base width */
+    max-width: 300px; /* Prevent from stretching too much */
     height: 200px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 20px 10px;
+    margin: 10px; /* Adjust the margin for spacing */
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
@@ -45,7 +50,19 @@
 .project-box p {
     font-size: 1rem;
     margin: 15px 10px 50px;
-    /* top right bottom */
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 1200px) {
+    .project-box {
+        flex: 1 1 calc(50% - 20px); /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .project-box {
+        flex: 1 1 calc(100% - 20px); /* Adjust width for mobile screens */
+    }
 }
