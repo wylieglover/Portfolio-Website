@@ -1,9 +1,10 @@
 .resume {
+    min-height: 100vh; 
     height: 100vh;
     padding: 20px;
     display: flex;
-    margin-top: 30px;
-    margin-left: 150px;
+    margin-top: 50px;
+    margin-left: 50px;
     justify-content: center;
     align-items: flex-start;
 }
@@ -15,16 +16,20 @@
 }
 
 .left-column {
-    flex: 0.9;
-    width: 100%;
-    margin-right: 20px;
+    flex: 1;
+    max-width: 50%; /* Adjust as needed */
+    margin-right: 20px; 
+    padding: 5px;
 }
 
 .right-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
     height: 70%;
     width: 50%;
+    max-width: 50%; /* Adjust as needed */
+    min-width: 50%;
     align-items: center;
 }
 
@@ -35,9 +40,16 @@
     width: 75%;
 }
 
+.resume-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Adjust vertical gap between name and email */
+}
 .resume-header-name {
-    font-size: 25px;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    gap: 10px; /* Adjust vertical gap between name and email */
 }
 
 .resume-header-email {
@@ -55,6 +67,7 @@
     padding: 20px;
     background-color: #8ec2cf;
     font-size: 20px;
+    overflow-wrap: break-word; 
 }
 
 .skills h2,
@@ -68,6 +81,13 @@
     padding: 0;
 }
 
+.skills ul li:before,
+.technologies ul li:before {
+    content: "•"; /* Bullet point character */
+    color: #333; /* Bullet point color */
+    display: inline-block;
+    width: 1em; /* Adjust space between bullet and text */
+}
 .image-container {
     display: flex;
     flex-direction: column;
