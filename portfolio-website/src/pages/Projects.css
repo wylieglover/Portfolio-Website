@@ -17,6 +17,7 @@
     flex-wrap: wrap; /* Ensure flex items wrap */
     gap: 10px;
     width: 100%; /* Ensure the container takes full width */
+    justify-content: center; /* Center the items */
 }
 
 .project-box {
