@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     container_name: portfolio-website
-    command: serve -s dist
+    command: npm run dev
     build:
       context: .
       dockerfile: ./Dockerfile
