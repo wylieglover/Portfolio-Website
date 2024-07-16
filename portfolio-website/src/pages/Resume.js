@@ -27,8 +27,8 @@ const Resume = () => {
                         <h1>Richard "Wylie" Glover</h1>
                     </div>
                     <div className="resume-header-email">
-                        <h3>rwylieg@gmail.com</h3>
                         <h3>(770) 508-7634</h3>
+                        <h3>rwylieg@gmail.com</h3>
                     </div>
                 </div>
                 <div className="resume-content">

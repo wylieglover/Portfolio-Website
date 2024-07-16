@@ -1,10 +1,12 @@
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .resume {
-    min-height: 100vh; 
-    height: 100vh;
-    padding: 20px;
     display: flex;
-    margin-top: 50px;
-    margin-left: 50px;
+    margin-top: 100px;
+    margin-left: 300px;
     justify-content: center;
     align-items: flex-start;
 }
@@ -15,22 +17,11 @@
     gap: 0px;
 }
 
-.left-column {
-    flex: 1;
-    max-width: 50%; /* Adjust as needed */
-    margin-right: 20px; 
-    padding: 5px;
-}
-
+.left-column,
 .right-column {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: 70%;
-    width: 50%;
-    max-width: 50%; /* Adjust as needed */
-    min-width: 50%;
-    align-items: center;
+    max-width: 100%; /* Remove max width restriction */
+    padding: 5px;
 }
 
 .resume-content {
@@ -38,18 +29,18 @@
     justify-content: center;
     gap: 20px;
     width: 75%;
+    min-width: 75%;
 }
 
 .resume-header {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Adjust vertical gap between name and email */
 }
 .resume-header-name {
     display: flex;
     flex-direction: column;
     font-size: 24px;
-    gap: 10px; /* Adjust vertical gap between name and email */
+
 }
 
 .resume-header-email {
@@ -57,17 +48,17 @@
 }
 
 .resume-header-email h3 {
-    margin: 3px 0;
+    margin: 5px 0;
 }
 
 .skills,
 .technologies {
     flex: 1;
-    width: 30%;
+    width: 35%;
     padding: 20px;
     background-color: #8ec2cf;
-    font-size: 20px;
-    overflow-wrap: break-word; 
+    line-height: 1.5em;
+    white-space: nowrap;
 }
 
 .skills h2,
@@ -92,13 +83,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 70px;
+    margin-top: 50px;
     margin-bottom: auto;
 }
 
 .download-image {
-    max-width: 60%;
-    width: auto;
+    max-width: 55%;
     height: auto;
     transition: transform 0.5s ease;
 }
@@ -152,4 +142,34 @@
 
 .hidden {
     display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .resume {
+        flex-direction: column; /* Stack elements vertically */
+        margin-top: 50px; /* Reduced top margin */
+        margin-left: 20px; /* Reduced left margin */
+        font-size: 2.5vw;
+    }
+}
+
+/* Tablet styles (optional) */
+@media only screen and (min-width: 768px) {
+    .left-column,
+    .right-column {
+        width: 50%; /* Adjust as needed */
+        font-size: 1.0vw;
+        height: 100%;
+    }
+}
+
+/* Desktop styles (optional) */
+@media only screen and (min-width: 1024px) {
+    .left-column {
+        max-width: 50%; /* Adjust as needed */
+        font-size: 1.0vw;
+    }
+    .right-column {
+        max-width: 50%; /* Adjust as needed */
+    }
 }

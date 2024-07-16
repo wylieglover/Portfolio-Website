@@ -1,11 +1,10 @@
 .navbar {
-    position: fixed; /* Position fixed for persistent placement */
-    top: 35px; /* 35 pixels from the top */
+    position: absolute; /* Position fixed for persistent placement */
+    top: 15px; /* 35 pixels from the top */
     right: 10px;
     width: 100%; /* Full width of the viewport */
     text-align: center; /* Center align the content inside .navbar */
     padding: 10px 0; /* Padding for the navbar content */
-    margin: 0; /* Remove default margin */
 }
 .navbar li {
     display: inline-block;

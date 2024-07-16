@@ -1,7 +1,25 @@
 body {
   background-image: url('./images/art.jpg');
   background-size: cover;
-  overflow: hidden;
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+}
+
+.wrapper {
+  min-height: 110vh; /* Ensure the wrapper is taller than the viewport */
+  overflow-y: scroll; /* Ensure the scrollbar is visible */
+}
+
+body::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #333; /* Set the track color (dark grey) */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #000; /* Set the thumb (handle) color to black */
+  border-radius: 5px;
 }
