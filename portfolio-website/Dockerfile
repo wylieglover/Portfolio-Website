@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:22-alpine
 
 ENV NODE_ENV development
 
@@ -10,4 +10,4 @@ COPY . .
 
 RUN npm install
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
