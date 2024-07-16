@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Run Docker Compose
         run: docker compose -f ./portfolio-website/docker-compose.yml up -d --force-recreate --build
