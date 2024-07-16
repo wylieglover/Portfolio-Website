@@ -9,7 +9,6 @@ COPY package.json .
 COPY . .
 
 RUN npm install
-RUN npm i -g vite --save-dev
 
 EXPOSE 3000
 
