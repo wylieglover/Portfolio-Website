@@ -3,12 +3,14 @@ version: '3.8'
 services:
   web:
     container_name: portfolio-website
-    restart: unless-stopped
-    build: .
+    command: serve -s dist
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     volumes:
       - /app/node_modules
       - .:/app
-    ports:
-      - "3000:3000"
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+    ports:
+      - 3000:3000
