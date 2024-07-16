@@ -9,6 +9,7 @@ COPY package*.json /app
 COPY . .
 
 RUN npm install
+RUN npm i -g vite
 
 EXPOSE 3000
 
