@@ -147,7 +147,7 @@ body {
 @media only screen and (max-width: 768px) {
     .resume {
         flex-direction: column; /* Stack elements vertically */
-        margin-top: 50px; /* Reduced top margin */
+        margin-top: 100px; /* Reduced top margin */
         margin-left: 20px; /* Reduced left margin */
         font-size: 2.5vw;
     }
