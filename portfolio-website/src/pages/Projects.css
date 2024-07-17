@@ -12,6 +12,7 @@
     flex-wrap: wrap; /* Ensure flex items wrap */
     gap: 10px;
     justify-content: center; /* Center the items */
+    margin-bottom: 20px;
 }
 
 .project-box {

@@ -7,22 +7,33 @@ import wylie_image from "../images/wylie.jpg";
 
 const Home = () => {
     const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
+    const [isImageVisible, setIsImageVisible] = useState(false);
 
     const handleMouseMove = (e) => {
         setImagePosition({ top: e.clientY, left: e.clientX });
+        setIsImageVisible(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsImageVisible(false);
+    };
+
+    const handleTouch = (e) => {
+        setImagePosition({ top: e.touches[0].clientY, left: e.touches[0].clientX });
+        setIsImageVisible(!isImageVisible);
     };
 
     return (
         <div className="center-content">
             <div className="name">
                 <span className="bold-text">Hello, I'm </span>
-                <span className="hoverable-text" onMouseMove={handleMouseMove}>Wylie Glover!</span>
-                <img src={wylie_image} alt="Profile" id="cursor-image" className="circular-image" style={{ top: imagePosition.top, left: imagePosition.left }} />
+                <span className="hoverable-text" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}  onTouchStart={handleTouch}>Wylie Glover!</span>
+                <img src={wylie_image} alt="Profile" id="cursor-image" className="circular-image" style={{ top: imagePosition.top, left: imagePosition.left, visibility: isImageVisible ? 'visible' : 'hidden', opacity: isImageVisible ? 1 : 0  }} />
             </div>
             <div className="bio">
                 Software Engineer | Recent graduate from Georgia Southern University
                 <br />
-                Passionate about crafting innovative solutions through code
+                Nvidia certified associate with AI/LLMs
             </div>
             <div className="social-icons">
                 <a href="https://github.com/wylieglover" target="_blank" rel="noopener noreferrer">

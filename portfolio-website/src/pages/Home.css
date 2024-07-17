@@ -26,39 +26,41 @@
 
 .circular-image {
     position: fixed;
-    border-radius: 50%;
+    border-radius: 70%;
     width: 100px;
     height: 100px;
+    max-width: 115px;
+    max-height: 115px;
     visibility: hidden;
     opacity: 0;
+    object-fit: cover;
     transition: opacity 0.3s ease-in-out;
 }
 
-.hoverable-text:hover+.circular-image {
+.circular-image.visible {
     visibility: visible;
     opacity: 1;
 }
 
 .bio {
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 18px;
 }
 
 .social-icons {
     display: flex;
     align-items: center;
-    margin-top: 20px;
-    margin-right: 20px;
-    display: flex;
+    margin-top: 10px;
     justify-content: center;
 }
-
 
 .social-icons svg {
     font-size: 2.5em;
     margin-right: 10px;
     color: #000;
+    justify-content: center;
+    align-items: center;
 }
 
 .social-icons svg:hover {

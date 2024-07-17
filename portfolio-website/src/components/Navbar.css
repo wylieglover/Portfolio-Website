@@ -1,28 +1,32 @@
-ul, ol {
-    margin: 0px;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    padding-inline-start: 0px;
+ul{
+    padding: 0;
+    margin: 0;
 }
 .navbar {
-    position: absolute; /* Position fixed for persistent placement */
-    justify-content: center;
-    top: 50px; /* 35 pixels from the top */
+    display: flex;
+    position: absolute; /* Change to fixed for persistent placement */
+    top: 35px; /* Align it to the top */
     width: 100%; /* Full width of the viewport */
     text-align: center; /* Center align the content inside .navbar */
-
+    justify-content: center;
+    z-index: 1000; /* Ensure it is on top */
 }
+
+.navbar ul {
+    display: flex; /* Use flexbox for the list items */
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Remove default list styling */
+}
+
 .navbar li {
     display: inline-block;
-    margin-left: 15px;
+    margin: 0 10px; /* Adjust margin for spacing */
 }
 
 .navbar .nav-link {
     text-decoration: none;
     font-weight: bold;
-}
-
-.navbar .nav-link {
     display: inline-block;
     background-color: transparent;
     border: none;

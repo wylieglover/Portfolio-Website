@@ -22,7 +22,7 @@ const Resume = () => {
     return (
         <div className="resume">
             <div className="resume-header">
-                <h1>Richard "Wylie" Glover</h1>
+                <h1>Richard Wylie Glover</h1>
                 <div className="resume-header-email">
                     <h3>(770) 508-7634</h3>
                     <h3>rwylieg@gmail.com</h3>
@@ -44,10 +44,11 @@ const Resume = () => {
                     <h2>Platforms</h2>
                     <ul>
                         <li>Django</li>
-                        <li>React.js</li>
+                        <li>React</li>
                         <li>Selenium</li>
                         <li>Linux</li>
                         <li>Ruby on Rails</li>
+                        <li>Nvidia RAPIDS</li>
                     </ul>
                 </div>
             </div>
