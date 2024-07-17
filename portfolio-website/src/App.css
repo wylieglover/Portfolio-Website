@@ -1,6 +1,13 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
 body {
   background-image: url('./images/art.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
@@ -23,3 +30,4 @@ body::-webkit-scrollbar-thumb {
   background-color: #000; /* Set the thumb (handle) color to black */
   border-radius: 5px;
 }
+

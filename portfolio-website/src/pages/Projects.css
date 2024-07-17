@@ -1,24 +1,23 @@
 .projects-container {
-    padding: 50px;
-    margin-top: 100px;
+    margin-top: 150px;
     display: flex;
     flex-wrap: wrap; /* Allow wrapping */
     justify-content: center; /* Center the items */
     gap: 20px; /* Add some gap between rows */
+    width: 100%;
 }
 
 .project-boxes {
     display: flex;
     flex-wrap: wrap; /* Ensure flex items wrap */
     gap: 10px;
-    width: 100%; /* Ensure the container takes full width */
     justify-content: center; /* Center the items */
 }
 
 .project-box {
     background-color: #292929;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 10px 15px rgb(54, 54, 54);
     color: #fff;
     cursor: pointer;
     flex: 1 1 300px; /* Allow to grow and shrink, with a base width */

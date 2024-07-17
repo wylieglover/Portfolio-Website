@@ -1,105 +1,70 @@
-body {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
 .resume {
     display: flex;
-    margin-top: 100px;
-    margin-left: 300px;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    margin: 150px auto;
+    max-width: 1000px;
+    padding: 20px;
 }
 
 .resume-header {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.left-column,
-.right-column {
-    flex: 1;
-    max-width: 100%; /* Remove max width restriction */
-    padding: 5px;
+.resume-header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.resume-header-email {
+    font-size: 1.2em;
+    color: #555;
 }
 
 .resume-content {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 75%;
-    min-width: 75%;
+    justify-content: space-around;
+    gap: 40px;
+    width: 100%;
+    margin-top: 20px;
 }
 
-.resume-header {
-    display: flex;
-    flex-direction: column;
-}
-.resume-header-name {
-    display: flex;
-    flex-direction: column;
-    font-size: 24px;
-
-}
-
-.resume-header-email {
-    font-size: 20px;
-}
-
-.resume-header-email h3 {
-    margin: 5px 0;
-}
-
-.skills,
-.technologies {
+.skills, .technologies {
     flex: 1;
-    width: 35%;
+    background-color: #292929;
     padding: 20px;
-    background-color: #8ec2cf;
-    line-height: 1.5em;
-    white-space: nowrap;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 10px 10px 15px rgb(54, 54, 54);
 }
 
-.skills h2,
-.technologies h2 {
-    margin-bottom: 10px;
+.skills h2, .technologies h2 {
+    margin-bottom: 20px;
 }
 
-.skills ul,
-.technologies ul {
-    list-style-type: none;
+.skills ul, .technologies ul {
+    list-style: none;
     padding: 0;
 }
 
-.skills ul li:before,
-.technologies ul li:before {
-    content: "•"; /* Bullet point character */
-    color: #333; /* Bullet point color */
-    display: inline-block;
-    width: 1em; /* Adjust space between bullet and text */
-}
-.image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 48px;
-    margin-bottom: auto;
+.skills ul li, .technologies ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
 }
 
-.download-image {
-    max-width: 55%;
-    height: auto;
-    transition: transform 0.5s ease;
-}
-
-.download-image:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-    align-self: flex-start;
+.skills ul li:before, .technologies ul li:before {
+    content: "•";
+    color: #fff;
+    position: absolute;
+    left: 0;
 }
 
 .download-button {
+    margin-top: 30px;
     margin-bottom: 10px;
     background-color: black;
     border: 1px solid transparent;
@@ -114,6 +79,26 @@ body {
     background-color: transparent;
     border-color: black;
     color: black;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.download-image {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 10px 10px 20px rgb(54, 54, 54);
+}
+
+.download-image:hover {
+    transform: scale(1.02);
+    box-shadow: none;
 }
 
 .resume-modal {
@@ -145,31 +130,12 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-    .resume {
-        flex-direction: column; /* Stack elements vertically */
-        margin-top: 100px; /* Reduced top margin */
-        margin-left: 20px; /* Reduced left margin */
-        font-size: 2.5vw;
+    .resume-content {
+        flex-direction: column;
     }
-}
 
-/* Tablet styles (optional) */
-@media only screen and (min-width: 768px) {
-    .left-column,
-    .right-column {
-        width: 50%; /* Adjust as needed */
-        font-size: 1.0vw;
-        height: 100%;
-    }
-}
-
-/* Desktop styles (optional) */
-@media only screen and (min-width: 1024px) {
-    .left-column {
-        max-width: 50%; /* Adjust as needed */
-        font-size: 1.0vw;
-    }
-    .right-column {
-        max-width: 50%; /* Adjust as needed */
+    .skills, .technologies {
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
