@@ -4,7 +4,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./Home.css"
 import wylie_image from "../images/wylie.jpg";
-
+import nvidia_badge from "../images/nvidia_badge.jpg"
 const Home = () => {
     const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
     const [isImageVisible, setIsImageVisible] = useState(false);
@@ -34,6 +34,16 @@ const Home = () => {
                 Software Engineer | Recent graduate from Georgia Southern University
                 <br />
                 Nvidia certified associate with AI/LLMs
+            </div>
+            <div class="nvidia-certified">
+                <img src={nvidia_badge} alt="Badge" class="nvidia-badge"></img>
+            </div>
+            <div className="honeycomb-container">
+                <div className="honeycomb">REACT</div>
+                <div className="honeycomb">DJANGO</div>
+                <div className="honeycomb">RAPIDS</div>
+                <div className="honeycomb">IDA PRO</div>
+                <div className="honeycomb">SELENIUM</div>
             </div>
             <div className="social-icons">
                 <a href="https://github.com/wylieglover" target="_blank" rel="noopener noreferrer">

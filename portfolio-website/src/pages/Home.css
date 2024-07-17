@@ -1,5 +1,4 @@
 .center-content {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,6 +7,7 @@
 }
 
 .name {
+    margin-top: 350px;
     position: relative;
     display: inline-block;
     font-family: Arial, sans-serif;
@@ -44,8 +44,36 @@
 
 .bio {
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 18px;
+}
+
+.honeycomb-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.honeycomb {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    font-size: 10px;
+    background-color: #292929;
+    color: white;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    text-align: center;
+    line-height: 60px;
+}
+
+.honeycomb:nth-child(even) {
+    transform: translateY(-40px);
+}
+
+.honeycomb:nth-child(odd) {
+    transform: translateY(5px);
 }
 
 .social-icons {
@@ -65,4 +93,11 @@
 
 .social-icons svg:hover {
     color: inherit;
+}
+
+.nvidia-badge {
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+    margin-bottom: 20px;
 }
