@@ -2,6 +2,12 @@ ul{
     padding: 0;
     margin: 0;
 }
+
+.navbar-container{
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+}
 .navbar {
     display: flex;
     position: absolute; /* Change to fixed for persistent placement */
@@ -10,6 +16,7 @@ ul{
     text-align: center; /* Center align the content inside .navbar */
     justify-content: center;
     z-index: 1000; /* Ensure it is on top */
+    gap: 20px;
 }
 
 .navbar ul {
@@ -21,7 +28,6 @@ ul{
 
 .navbar li {
     display: inline-block;
-    margin: 0 10px; /* Adjust margin for spacing */
 }
 
 .navbar .nav-link {

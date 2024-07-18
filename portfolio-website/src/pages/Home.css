@@ -7,7 +7,7 @@
 }
 
 .name {
-    margin-top: 350px;
+    margin-top: 238px;
     position: relative;
     display: inline-block;
     font-family: Arial, sans-serif;
@@ -52,6 +52,7 @@
 .honeycomb-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -79,16 +80,14 @@
 .social-icons {
     display: flex;
     align-items: center;
-    margin-top: 10px;
     justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
 }
 
 .social-icons svg {
     font-size: 2.5em;
-    margin-right: 10px;
     color: #000;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 30px;
 }
 
@@ -102,3 +101,14 @@
     margin: 0 10px;
     margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+    .name {
+        margin-top: 150px;
+        font-size: 2.5em;
+    }
+    .bio{
+        font-size: 12px;
+    }
+}
+
