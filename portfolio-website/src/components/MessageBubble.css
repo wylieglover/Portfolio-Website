@@ -1,0 +1,50 @@
+@keyframes fadeOutRight {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+}
+
+.message-bubble {
+  position: fixed;
+  bottom: 60px; /* Adjust as needed */
+  right: 115px; /* Adjust as needed to align with the chat icon */
+  padding: 10px 20px;
+  background-color: #292929;
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateX(95px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1000;
+  quotes: "“" "”" "‘" "’";
+  pointer-events: none;
+}
+  
+.message-bubble.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.message-bubble.fade-out {
+  animation: fadeOutRight 1s forwards;
+}
+
+.message-bubble:after {
+  content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 12px solid transparent;
+	border-left-color: #292929;
+	border-right: 0;
+	border-top: 0;
+	margin-right: -8px;
+}

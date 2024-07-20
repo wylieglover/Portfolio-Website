@@ -12,3 +12,4 @@ const ResumePDF = () => {
 };
 
 export default ResumePDF;
+

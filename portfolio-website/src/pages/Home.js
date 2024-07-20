@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./Home.css"
 import wylie_image from "../images/wylie.jpg";
 import nvidia_badge from "../images/nvidia_badge.jpg"
+
 const Home = () => {
     const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
     const [isImageVisible, setIsImageVisible] = useState(false);
@@ -35,8 +36,8 @@ const Home = () => {
                 <br />
                 Nvidia certified associate with AI/LLMs
             </div>
-            <div class="nvidia-certified">
-                <img src={nvidia_badge} alt="Badge" class="nvidia-badge"></img>
+            <div className="nvidia-certified">
+                <img src={nvidia_badge} alt="Badge" className="nvidia-badge"></img>
             </div>
             <div className="honeycomb-container">
                 <div className="honeycomb">REACT</div>

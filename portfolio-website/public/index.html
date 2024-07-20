@@ -1,41 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="A personal website created by Wylie Glover." />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <script>
+      window.env = {
+        REACT_APP_DIALOGFLOW_PROJECT_ID: '%REACT_APP_DIALOGFLOW_PROJECT_ID%',
+        REACT_APP_DIALOGFLOW_AGENT_ID: '%REACT_APP_DIALOGFLOW_AGENT_ID%'
+      };
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-</head>
+    </script>
+  </head>
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div id="root"></div>
+    <script>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-</body>
+      function isMessengerOpen() {
+        const dfMessenger = document.querySelector('df-messenger');
+        if (dfMessenger) {
+          const shadowRoot = document.querySelector('df-messenger').shadowRoot;
+          const slot = shadowRoot.querySelector('slot')
+          
+          const assignedNodes = slot.assignedNodes();
+          const node = assignedNodes[1]
+          
+          const dfMessengerChat = node.shadowRoot.querySelector('df-messenger-chat');
+          const chatWrapper = dfMessengerChat.shadowRoot.querySelector('.chat-wrapper');
+          const style = window.getComputedStyle(chatWrapper);
 
+          return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity > 0;
+        }
+        return false;
+      }
+      function handleNewMessage(message) {
+        const chatOpen = isMessengerOpen()
+        if (!chatOpen && window.updateMessageBubble) {
+          window.updateMessageBubble(message);
+        }
+      }
+
+      var num = 0
+      function observeMessages() {
+        const dfMessenger = document.querySelector('df-messenger');
+        if (!dfMessenger) return;
+        
+        const shadowRoot = dfMessenger.shadowRoot;
+        if (!shadowRoot) return;
+        
+        const slot = shadowRoot.querySelector('slot')
+        if (!slot) return;
+        
+        const assignedNodes = slot.assignedNodes();
+        const node = assignedNodes[1]
+        const dfMessengerChat = node.shadowRoot.querySelector('df-messenger-chat');
+        
+        const chatWrapper = dfMessengerChat.shadowRoot.querySelector('.chat-wrapper');
+        
+        if (!chatWrapper) return;
+        
+        const messageListWrapper = chatWrapper.querySelector('.message-list-wrapper');
+        const dfMessengerMessageList = messageListWrapper.querySelector('df-messenger-message-list');
+        
+        const entryBot = dfMessengerMessageList.shadowRoot.querySelectorAll('.entry.bot');
+        if (!entryBot) return;
+        const messages = []
+        entryBot.forEach(entry =>{
+          const dfMessengerUtterance = entry.querySelector('df-messenger-utterance');
+          if (!dfMessengerUtterance) return;
+          
+          const messageStack = dfMessengerUtterance.shadowRoot.querySelector('.message-stack.single');
+          const dfMarkDownMessage = messageStack.querySelector('df-markdown-message')
+          const message = dfMarkDownMessage.shadowRoot.querySelector('.message.bot-message.markdown')
+          messages.push(message.textContent)
+        })
+
+        if(num > 60){
+          handleNewMessage(messages[messages.length - 1])
+          num = 0
+        }
+        
+        const style = window.getComputedStyle(chatWrapper);
+        const isChatOpen = style.display !== 'none' && style.visibility !== 'hidden' && style.opacity > 0;
+        if (window.updateChatStatus) {
+          window.updateChatStatus(isChatOpen);
+        }
+        num += 1
+      }
+      setInterval(observeMessages, 500)
+    </script>
+    <div className="df-messenger-container">
+      <df-messenger
+        intent="WELCOME"
+        location="us"
+        project-id="%REACT_APP_DIALOGFLOW_PROJECT_ID%"
+        agent-id="%REACT_APP_DIALOGFLOW_AGENT_ID%"
+        language-code="en"
+        max-query-length="-1"
+        allow-feedback="all">
+        <df-messenger-chat-bubble
+          chat-title="Wylie-Bot"
+          chat-subtitle="A chatbot to answer questions about Wylie">
+        </df-messenger-chat-bubble>
+      </df-messenger>
+      <style>
+        df-messenger {
+          z-index: 999;
+          position: fixed;
+          --df-messenger-font-color: white;
+          --df-messenger-font-family: Google Sans;
+          --df-messenger-chat-background: #303030;
+          --df-messenger-message-user-background: #464646;
+          --df-messenger-message-bot-background: #0b9b4c;
+          --df-messenger-chat-bubble-background: #292929;
+          --df-messenger-chat-bubble-icon-color: white;
+          --df-messenger-titlebar-background: #292929;
+          --df-messenger-titlebar-font-color: white;
+          --df-messenger-chat-scroll-button-background: white;
+          --df-messenger-input-box-color: white;
+          --df-messenger-input-font-color: black;
+          --df-messenger-input-background: #292929;
+          --df-messenger-input-icon-color: white;
+          --df-messenger-titlebar-border: black;
+          --df-messenger-input-gutter: black;
+          --df-messenger-send-icon-color: white;
+          --df-messenger-send-icon-color-hover: white;
+          --df-messenger-send-icon-color-active: white;
+          --df-messenger-chat-bubble-icon-color: white;
+          --df-messenger-message-feedback-icon-background-hover:rgba(63, 110, 165, 0.979);
+          bottom: 30px;
+          right: 30px;
+        }
+      </style>
+    </div>
+
+  </body>
 </html>
