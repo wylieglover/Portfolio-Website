@@ -10,5 +10,11 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v4
 
+      - name: Create env file
+        run: |
+          touch ./dataliteracy/.env
+          echo "REACT_APP_DIALOGFLOW_PROJECT_ID=${{ secrets.REACT_APP_DIALOGFLOW_PROJECT_ID }}" >> ./portfolio-website/.env
+          echo "REACT_APP_DIALOGFLOW_PROJECT_ID=${{ secrets.REACT_APP_DIALOGFLOW_PROJECT_ID }}" >> ./portfolio-website/.env
+          
       - name: Run Docker Compose
         run: docker compose -f ./portfolio-website/docker-compose.yml up -d --force-recreate --build
