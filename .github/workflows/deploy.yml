@@ -12,7 +12,7 @@ jobs:
 
       - name: Create env file
         run: |
-          touch ./dataliteracy/.env
+          touch ./portfolio-website/.env
           echo "REACT_APP_DIALOGFLOW_PROJECT_ID=${{ secrets.REACT_APP_DIALOGFLOW_PROJECT_ID }}" >> ./portfolio-website/.env
           echo "REACT_APP_DIALOGFLOW_PROJECT_ID=${{ secrets.REACT_APP_DIALOGFLOW_PROJECT_ID }}" >> ./portfolio-website/.env
           
