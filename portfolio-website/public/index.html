@@ -9,13 +9,6 @@
 
     <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-    <script>
-      window.env = {
-        REACT_APP_DIALOGFLOW_PROJECT_ID: REACT_APP_DIALOGFLOW_PROJECT_ID,
-        REACT_APP_DIALOGFLOW_AGENT_ID: REACT_APP_DIALOGFLOW_AGENT_ID
-      };
-
-    </script>
   </head>
 
   <body>
@@ -97,12 +90,13 @@
       }
       setInterval(observeMessages, 500)
     </script>
+    
     <div className="df-messenger-container">
       <df-messenger
         intent="WELCOME"
         location="us"
-        project-id="%REACT_APP_DIALOGFLOW_PROJECT_ID%"
-        agent-id="%REACT_APP_DIALOGFLOW_AGENT_ID%"
+        project-id="<%= process.env.REACT_APP_DIALOGFLOW_PROJECT_ID %>"
+        agent-id="<%= process.env.REACT_APP_DIALOGFLOW_AGENT_ID %>"
         language-code="en"
         max-query-length="-1"
         allow-feedback="all">
