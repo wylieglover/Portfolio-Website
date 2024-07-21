@@ -24,7 +24,9 @@ const AppRoutes = () => {
   const isResumePDF = location.pathname === '/resume.pdf';
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
-
+  const projectId = process.env.REACT_APP_DIALOGFLOW_PROJECT_ID;
+  const agentId = process.env.REACT_APP_DIALOGFLOW_AGENT_ID;
+  
   useEffect(() => {
     // Expose the updateMessage function globally
     window.updateMessageBubble = (newMessage) => {
@@ -63,8 +65,53 @@ const AppRoutes = () => {
             visible={visible}
           />
       </div>
-    
-      
+
+      <div className="df-messenger-container">
+        <df-messenger
+          intent="WELCOME"
+          location="us"
+          project-id={projectId}
+          agent-id={agentId}
+          language-code="en"
+          max-query-length="-1"
+          allow-feedback="all">
+          <df-messenger-chat-bubble
+            chat-title="Wylie-Bot"
+            chat-subtitle="A chatbot to answer questions about Wylie">
+          </df-messenger-chat-bubble>
+        </df-messenger>
+        <style>
+          {`
+            df-messenger {
+              z-index: 999;
+              position: fixed;
+              --df-messenger-font-color: white;
+              --df-messenger-font-family: Google Sans;
+              --df-messenger-chat-background: #303030;
+              --df-messenger-message-user-background: #464646;
+              --df-messenger-message-bot-background: #0b9b4c;
+              --df-messenger-chat-bubble-background: #292929;
+              --df-messenger-chat-bubble-icon-color: white;
+              --df-messenger-titlebar-background: #292929;
+              --df-messenger-titlebar-font-color: white;
+              --df-messenger-chat-scroll-button-background: white;
+              --df-messenger-input-box-color: white;
+              --df-messenger-input-font-color: black;
+              --df-messenger-input-background: #292929;
+              --df-messenger-input-icon-color: white;
+              --df-messenger-titlebar-border: black;
+              --df-messenger-input-gutter: black;
+              --df-messenger-send-icon-color: white;
+              --df-messenger-send-icon-color-hover: white;
+              --df-messenger-send-icon-color-active: white;
+              --df-messenger-chat-bubble-icon-color: white;
+              --df-messenger-message-feedback-icon-background-hover:rgba(63, 110, 165, 0.979);
+              bottom: 30px;
+              right: 30px;
+            }
+          `}
+        </style>
+      </div>
     </>
   );
 };

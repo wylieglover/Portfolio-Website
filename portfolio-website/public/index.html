@@ -22,10 +22,9 @@
         if (dfMessenger) {
           const shadowRoot = document.querySelector('df-messenger').shadowRoot;
           const slot = shadowRoot.querySelector('slot')
-          
+
           const assignedNodes = slot.assignedNodes();
-          const node = assignedNodes[1]
-          
+          const node = assignedNodes[0]
           const dfMessengerChat = node.shadowRoot.querySelector('df-messenger-chat');
           const chatWrapper = dfMessengerChat.shadowRoot.querySelector('.chat-wrapper');
           const style = window.getComputedStyle(chatWrapper);
@@ -37,6 +36,7 @@
       function handleNewMessage(message) {
         const chatOpen = isMessengerOpen()
         if (!chatOpen && window.updateMessageBubble) {
+          console.log(message)
           window.updateMessageBubble(message);
         }
       }
@@ -51,20 +51,20 @@
         
         const slot = shadowRoot.querySelector('slot')
         if (!slot) return;
-        
+
         const assignedNodes = slot.assignedNodes();
-        const node = assignedNodes[1]
+        const node = assignedNodes[0]
         const dfMessengerChat = node.shadowRoot.querySelector('df-messenger-chat');
-        
+   
         const chatWrapper = dfMessengerChat.shadowRoot.querySelector('.chat-wrapper');
-        
         if (!chatWrapper) return;
-        
+
         const messageListWrapper = chatWrapper.querySelector('.message-list-wrapper');
         const dfMessengerMessageList = messageListWrapper.querySelector('df-messenger-message-list');
-        
+
         const entryBot = dfMessengerMessageList.shadowRoot.querySelectorAll('.entry.bot');
         if (!entryBot) return;
+
         const messages = []
         entryBot.forEach(entry =>{
           const dfMessengerUtterance = entry.querySelector('df-messenger-utterance');
@@ -75,8 +75,8 @@
           const message = dfMarkDownMessage.shadowRoot.querySelector('.message.bot-message.markdown')
           messages.push(message.textContent)
         })
-
-        if(num > 60){
+        console.log(messages)
+        if(num > 120){
           handleNewMessage(messages[messages.length - 1])
           num = 0
         }
@@ -88,53 +88,7 @@
         }
         num += 1
       }
-      setInterval(observeMessages, 500)
+      setInterval(observeMessages, 1000)
     </script>
-    
-    <div className="df-messenger-container">
-      <df-messenger
-        intent="WELCOME"
-        location="us"
-        project-id="<%= process.env.REACT_APP_DIALOGFLOW_PROJECT_ID %>"
-        agent-id="<%= process.env.REACT_APP_DIALOGFLOW_AGENT_ID %>"
-        language-code="en"
-        max-query-length="-1"
-        allow-feedback="all">
-        <df-messenger-chat-bubble
-          chat-title="Wylie-Bot"
-          chat-subtitle="A chatbot to answer questions about Wylie">
-        </df-messenger-chat-bubble>
-      </df-messenger>
-      <style>
-        df-messenger {
-          z-index: 999;
-          position: fixed;
-          --df-messenger-font-color: white;
-          --df-messenger-font-family: Google Sans;
-          --df-messenger-chat-background: #303030;
-          --df-messenger-message-user-background: #464646;
-          --df-messenger-message-bot-background: #0b9b4c;
-          --df-messenger-chat-bubble-background: #292929;
-          --df-messenger-chat-bubble-icon-color: white;
-          --df-messenger-titlebar-background: #292929;
-          --df-messenger-titlebar-font-color: white;
-          --df-messenger-chat-scroll-button-background: white;
-          --df-messenger-input-box-color: white;
-          --df-messenger-input-font-color: black;
-          --df-messenger-input-background: #292929;
-          --df-messenger-input-icon-color: white;
-          --df-messenger-titlebar-border: black;
-          --df-messenger-input-gutter: black;
-          --df-messenger-send-icon-color: white;
-          --df-messenger-send-icon-color-hover: white;
-          --df-messenger-send-icon-color-active: white;
-          --df-messenger-chat-bubble-icon-color: white;
-          --df-messenger-message-feedback-icon-background-hover:rgba(63, 110, 165, 0.979);
-          bottom: 30px;
-          right: 30px;
-        }
-      </style>
-    </div>
-
   </body>
 </html>
