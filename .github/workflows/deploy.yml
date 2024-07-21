@@ -15,7 +15,7 @@ jobs:
           touch ./portfolio-website/.env
           echo "REACT_APP_DIALOGFLOW_PROJECT_ID=${{ secrets.REACT_APP_DIALOGFLOW_PROJECT_ID }}" >> ./portfolio-website/.env
           echo "REACT_APP_DIALOGFLOW_AGENT_ID=${{ secrets.REACT_APP_DIALOGFLOW_AGENT_ID }}" >> ./portfolio-website/.env
-          echo "WDS_SOCKET_PORT=443" >> ./portfolio-website/.env
+          echo "WDS_SOCKET_PORT=0" >> ./portfolio-website/.env
           
       - name: Run Docker Compose
         run: docker compose -f ./portfolio-website/docker-compose.yml up -d --force-recreate --build
