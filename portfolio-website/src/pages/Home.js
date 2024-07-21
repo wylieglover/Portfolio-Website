@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import "./Home.css"
 import wylie_image from "../images/wylie.jpg";
 import nvidia_badge from "../images/nvidia_badge.jpg"

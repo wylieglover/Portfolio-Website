@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Resume from "./pages/Resume";
@@ -28,7 +29,6 @@ const AppRoutes = () => {
   const agentId = process.env.REACT_APP_DIALOGFLOW_AGENT_ID;
   
   useEffect(() => {
-    // Expose the updateMessage function globally
     window.updateMessageBubble = (newMessage) => {
       if(newMessage && newMessage.trim() !== ''){
         setVisible(true)
@@ -38,17 +38,12 @@ const AppRoutes = () => {
       }, 5000);
       }
     };
-
     window.updateChatStatus = (isChatOpen) => {
       if (isChatOpen) {
         setVisible(false);
-      } else {
-        // Handle case when the chat is closed if needed
       }
     };
-    
   }, []);
-
 
   return (
     <>
@@ -61,9 +56,9 @@ const AppRoutes = () => {
       </Routes>
       <div>
         <MessageBubble
-            message={message}
-            visible={visible}
-          />
+          message={message}
+          visible={visible}
+        />
       </div>
 
       <div className="df-messenger-container">
@@ -106,6 +101,9 @@ const AppRoutes = () => {
               --df-messenger-send-icon-color-active: white;
               --df-messenger-chat-bubble-icon-color: white;
               --df-messenger-message-feedback-icon-background-hover:rgba(63, 110, 165, 0.979);
+              scrollbar-color: black #292929;
+              scrollbar-width: thin;
+              scrollbar-gutter: stable both-edges;
               bottom: 30px;
               right: 30px;
             }
