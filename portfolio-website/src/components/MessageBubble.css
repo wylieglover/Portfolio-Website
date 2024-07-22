@@ -1,12 +1,12 @@
 @keyframes fadeOutRight {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100px);
-  }
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
 }
 
 .message-bubble {
@@ -25,7 +25,7 @@
   quotes: "“" "”" "‘" "’";
   pointer-events: none;
 }
-
+  
 .message-bubble.visible {
   opacity: 1;
   transform: translateX(0);
@@ -37,14 +37,14 @@
 
 .message-bubble:after {
   content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border: 12px solid transparent;
-  border-left-color: #292929;
-  border-right: 0;
-  border-top: 0;
-  margin-right: -8px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 12px solid transparent;
+	border-left-color: #292929;
+	border-right: 0;
+	border-top: 0;
+	margin-right: -8px;
 }
