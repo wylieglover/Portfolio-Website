@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { saveAs } from "file-saver";
 import "./Resume.css";
 import resume from "../images/resume.jpg";
 import resumePDF from "../images/resume.pdf";
@@ -16,7 +15,12 @@ const Resume = () => {
     };
 
     const handleDownload = () => {
-        saveAs(resumePDF, "resume.pdf");
+        const link = document.createElement('a');
+        link.href = resumePDF;
+        link.setAttribute('download', 'resume.pdf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     return (
@@ -53,7 +57,7 @@ const Resume = () => {
                 </div>
             </div>
             <div className="image-container">
-                <button className="download-button" onClick={handleDownload}>
+                <button onClick={handleDownload} className="download-button">
                     DOWNLOAD PDF
                 </button>
                 <img
