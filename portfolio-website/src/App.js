@@ -25,8 +25,8 @@ const AppRoutes = () => {
   const isResumePDF = location.pathname === '/resume.pdf';
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
-  const projectId = import.meta.env.VITE_APP_DIALOGFLOW_PROJECT_ID;
-  const agentId = import.meta.env.VITE_APP_DIALOGFLOW_AGENT_ID;
+  const projectId = process.env.REACT_APP_DIALOGFLOW_PROJECT_ID;
+  const agentId = process.env.REACT_APP_DIALOGFLOW_AGENT_ID;
   
   useEffect(() => {
     window.updateMessageBubble = (newMessage) => {

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <div id="root"></div>
+    <script>
+      function handleNewMessage(message, isChatOpen) {
+        if (!isChatOpen && window.updateMessageBubble) {
+          window.updateMessageBubble(message);
+        }
+      }
+      
+      var num = 0
+      function observeMessages() {
+        const dfMessenger = document.querySelector('df-messenger');
+
+        if (!dfMessenger) return;
+        
+        const shadowRoot = dfMessenger.shadowRoot;
+        if (!shadowRoot) return;
+        
+        const slot = shadowRoot.querySelector('slot')
+        if (!slot) return;
+
+        const assignedNodes = slot.assignedNodes();
+        const dfMessengerChatBubble = assignedNodes[0]
+
+        const dfMessengerChat = dfMessengerChatBubble.shadowRoot.querySelector('df-messenger-chat');
+        if (!dfMessengerChat) return;
+
+        const chatWrapper = dfMessengerChat.shadowRoot.querySelector('.chat-wrapper');
+        if (!chatWrapper) return;
+        
+        const messageListWrapper = chatWrapper.querySelector('.message-list-wrapper');
+        const dfMessengerMessageList = messageListWrapper.querySelector('df-messenger-message-list');
+
+        const entryBot = dfMessengerMessageList.shadowRoot.querySelectorAll('.entry.bot');
+        if (!entryBot) return;
+
+        const messages = []
+        entryBot.forEach(entry =>{
+          const dfMessengerUtterance = entry.querySelector('df-messenger-utterance');
+          if (!dfMessengerUtterance) return;
+          
+          const messageStack = dfMessengerUtterance.shadowRoot.querySelector('.message-stack.single');
+          const dfMarkDownMessage = messageStack.querySelector('df-markdown-message')
+          const message = dfMarkDownMessage.shadowRoot.querySelector('.message.bot-message.markdown')
+          messages.push(message.textContent)
+        })
+
+        const style = window.getComputedStyle(chatWrapper);
+        const isChatOpen = style.display !== 'none' && style.visibility !== 'hidden' && style.opacity > 0;
+
+        if (window.updateChatStatus) {
+          window.updateChatStatus(isChatOpen);
+        }
+
+        if (num >= 120){
+          handleNewMessage(messages[messages.length - 1], isChatOpen)
+          num = 0
+        }
+        num += 1
+      }
+      setInterval(observeMessages, 1000)
+    </script>
+  </body>
+</html>
