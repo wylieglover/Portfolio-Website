@@ -1,3 +1,8 @@
+a {
+    color: #00f; /* Example link color */
+    background: transparent;
+}
+
 .center-content {
     display: flex;
     flex-direction: column;
@@ -7,19 +12,18 @@
 }
 
 .name {
+    color: #000;
     margin-top: 238px;
+    margin-bottom: 5px;
     position: relative;
     display: inline-block;
     font-family: Arial, sans-serif;
     font-size: 75px;
 }
 
-.bold-text {
-    font-weight: bold;
-}
 
 .hoverable-text {
-    font-weight: bold;
+    color: #000;
     position: relative;
     cursor: pointer;
 }
@@ -35,6 +39,7 @@
     opacity: 0;
     object-fit: cover;
     transition: opacity 0.3s ease-in-out;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .circular-image.visible {
@@ -44,7 +49,6 @@
 
 .bio {
     font-weight: bold;
-    margin-top: 20px;
     margin-bottom: 20px;
     font-size: 18px;
 }

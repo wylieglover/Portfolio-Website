@@ -27,18 +27,18 @@ const Home = () => {
 
     return (
         <div className="center-content">
-            <div className="name">
-                <span className="bold-text">Hello, I'm </span>
-                <span className="hoverable-text" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}  onTouchStart={handleTouch}>Wylie Glover!</span>
-                <img src={wylie_image} alt="Profile" id="cursor-image" className="circular-image" style={{ top: imagePosition.top, left: imagePosition.left, visibility: isImageVisible ? 'visible' : 'hidden', opacity: isImageVisible ? 1 : 0  }} />
-            </div>
+            <h1 className="name">
+                <strong className="text">Hello, I'm </strong>
+                <strong className="hoverable-text" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}  onTouchStart={handleTouch}>Wylie Glover!</strong>
+                <img src={wylie_image} alt="Wylie Glover Profile Picture" id="cursor-image" className="circular-image" style={{ top: imagePosition.top, left: imagePosition.left, visibility: isImageVisible ? 'visible' : 'hidden', opacity: isImageVisible ? 1 : 0  }} width="100px" height="100px"/>
+            </h1>
             <div className="bio">
                 Software Engineer | Recent graduate from Georgia Southern University
                 <br />
                 Nvidia certified associate with AI/LLMs
             </div>
             <div className="nvidia-certified">
-                <img src={nvidia_badge} alt="Badge" className="nvidia-badge"></img>
+                <img src={nvidia_badge} alt="NVIDIA Certified Associate Badge" className="nvidia-badge" width="100px" height="100px"></img>
             </div>
             <div className="honeycomb-container">
                 <div className="honeycomb">REACT</div>
@@ -48,13 +48,13 @@ const Home = () => {
                 <div className="honeycomb">SELENIUM</div>
             </div>
             <div className="social-icons">
-                <a href="https://github.com/wylieglover" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/wylieglover" aria-label="GitHub">
                     <FontAwesomeIcon icon={faGithub} />
                 </a>
-                <a href="https://www.linkedin.com/in/wylieglover" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/wylieglover" aria-label="LinkedIn">
                     <FontAwesomeIcon icon={faLinkedin} />
                 </a>
-                <a href="mailto:rwylieg@gmai.com" target="_blank" rel="noopener noreferrer">
+                <a href="mailto:rwylieg@gmai.com" aria-label="Email">
                     <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: '43px' }} />
                 </a>
             </div>

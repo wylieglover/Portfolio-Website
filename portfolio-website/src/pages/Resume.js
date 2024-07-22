@@ -61,6 +61,8 @@ const Resume = () => {
                     alt="Resume"
                     onClick={handleImageClick}
                     className="download-image"
+                    width="1000px"
+                    height="1200px"
                 />
             </div>
             {isBloomed && (
