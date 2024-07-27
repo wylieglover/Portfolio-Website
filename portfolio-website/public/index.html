@@ -38,9 +38,20 @@
 
         const assignedNodes = slot.assignedNodes();
         const dfMessengerChatBubble = assignedNodes[0]
-
         const dfMessengerChat = dfMessengerChatBubble.shadowRoot.querySelector('df-messenger-chat');
         if (!dfMessengerChat) return;
+        
+        const button = dfMessengerChatBubble.shadowRoot.querySelector('.container').querySelector('.bubble.focus-outline')
+
+        button.addEventListener('mouseenter', () => {
+          button.style.backgroundColor = 'rgb(0, 102, 255)';
+          button.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.5)'; 
+        });
+
+        button.addEventListener('mouseleave', () => {
+          button.style.backgroundColor = '#292929'; 
+          button.style.boxShadow = 'none'; 
+        });
 
         const chatWrapper = dfMessengerChat.shadowRoot.querySelector('.chat-wrapper');
         if (!chatWrapper) return;

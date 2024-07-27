@@ -84,8 +84,8 @@ const AppRoutes = () => {
               --df-messenger-message-bot-font-color: white;
               --df-messenger-font-family: Google Sans;
               --df-messenger-chat-background: #303030;
-              --df-messenger-message-user-background: #464646;
-              --df-messenger-message-bot-background: #0b9b4c;
+              --df-messenger-message-user-background: #464649;
+              --df-messenger-message-bot-background: rgb(0, 102, 255);
               --df-messenger-chat-bubble-background: #292929;
               --df-messenger-chat-bubble-icon-color: white;
               --df-messenger-titlebar-background: #292929;
@@ -97,10 +97,10 @@ const AppRoutes = () => {
               --df-messenger-input-icon-color: white;
               --df-messenger-titlebar-border: black;
               --df-messenger-input-gutter: black;
-              --df-messenger-send-icon-color-hover: rgba(63, 110, 165, 0.979);
+              --df-messenger-send-icon-color-hover: rgb(0, 102, 255);
               --df-messenger-send-icon-color-active: white;
               --df-messenger-chat-bubble-icon-color: white;
-              --df-messenger-message-feedback-icon-background-hover:rgba(63, 110, 165, 0.979);
+              --df-messenger-message-feedback-icon-background-hover:rgb(0, 102, 255);
               --df-messenger-message-feedback-font-color: black;
               scrollbar-color: black #292929;
               scrollbar-width: thin;

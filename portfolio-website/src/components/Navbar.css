@@ -26,6 +26,7 @@ ul{
     list-style: none; /* Remove default list styling */
 }
 
+
 .navbar li {
     display: inline-block;
 }
@@ -38,5 +39,8 @@ ul{
     border: none;
     cursor: pointer;
     font-size: 16px;
-    color: #000;
+    color: black;
+}
+.navbar .nav-link:hover {
+    color: rgb(0, 102, 255);
 }

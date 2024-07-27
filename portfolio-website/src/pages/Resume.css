@@ -26,7 +26,7 @@
 .resume-content {
     display: flex;
     justify-content: space-around;
-    gap: 40px;
+    gap: 20px;
     width: 100%;
 }
 

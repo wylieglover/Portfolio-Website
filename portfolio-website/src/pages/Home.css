@@ -13,14 +13,13 @@ a {
 
 .name {
     color: #000;
-    margin-top: 238px;
-    margin-bottom: 5px;
+    margin-top: 258px;
+    margin-bottom: 10px;
     position: relative;
     display: inline-block;
     font-family: Arial, sans-serif;
     font-size: 75px;
 }
-
 
 .hoverable-text {
     color: #000;
@@ -49,7 +48,7 @@ a {
 
 .bio {
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 18px;
 }
 
@@ -58,7 +57,7 @@ a {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .honeycomb {
@@ -73,12 +72,14 @@ a {
     line-height: 60px;
 }
 
-.honeycomb:nth-child(even) {
-    transform: translateY(-40px);
+.honeycomb-container a{
+    text-decoration: none;
 }
-
-.honeycomb:nth-child(odd) {
-    transform: translateY(5px);
+.honeycomb:hover{
+    color: rgb(0, 102, 255);
+}
+.honeycomb-container a:nth-child(even){
+    transform: translateY(-40px);
 }
 
 .social-icons {
@@ -96,14 +97,13 @@ a {
 }
 
 .social-icons svg:hover {
-    color: inherit;
+    color: rgb(0, 102, 255);
 }
 
 .nvidia-badge {
     width: 100px;
     height: 100px;
-    margin: 0 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {

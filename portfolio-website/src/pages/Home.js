@@ -41,20 +41,20 @@ const Home = () => {
                 <img src={nvidia_badge} alt="NVIDIA Certified Associate Badge" className="nvidia-badge" width="100px" height="100px"></img>
             </div>
             <div className="honeycomb-container">
-                <div className="honeycomb">REACT</div>
-                <div className="honeycomb">DJANGO</div>
-                <div className="honeycomb">RAPIDS</div>
-                <div className="honeycomb">IDA PRO</div>
-                <div className="honeycomb">SELENIUM</div>
+                <a href="/projects"><div className="honeycomb">REACT</div></a>
+                <a href="/projects"><div className="honeycomb">DJANGO</div></a>
+                <a href="/projects"><div className="honeycomb">RAPIDS</div></a>
+                <a href="/projects"><div className="honeycomb">IDA PRO</div></a>
+                <a href="/projects"><div className="honeycomb">SELENIUM</div></a>
             </div>
             <div className="social-icons">
-                <a href="https://github.com/wylieglover" aria-label="GitHub">
+                <a href="https://github.com/wylieglover" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faGithub} />
                 </a>
-                <a href="https://www.linkedin.com/in/wylieglover" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/wylieglover" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faLinkedin} />
                 </a>
-                <a href="mailto:rwylieg@gmai.com" aria-label="Email">
+                <a href="mailto:rwylieg@gmai.com" aria-label="Email" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: '43px' }} />
                 </a>
             </div>
