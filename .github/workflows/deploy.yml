@@ -12,3 +12,4 @@ jobs:
 
       - name: Run Docker Compose
         run: docker compose -f ./portfolio-website/docker-compose.yml up -d --force-recreate --build
+        
