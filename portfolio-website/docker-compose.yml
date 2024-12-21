@@ -2,10 +2,8 @@ version: '3.8'
 
 services:
   dev:
-    container_name: portfolio-website-dev
-    build:
-      context: .
-      target: builder # Use the builder stage for development
+    container_name: portfolio-website
+    build: .
     command: npm start
     volumes:
       - .:/app
@@ -14,12 +12,3 @@ services:
       - 3000:3000
     environment:
       NODE_ENV: development
-
-  prod:
-    container_name: portfolio-website-prod
-    build:
-      context: .
-    ports:
-      - 3000:3000
-    environment:
-      NODE_ENV: production
