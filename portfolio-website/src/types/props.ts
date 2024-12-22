@@ -4,24 +4,6 @@ export interface Project {
     tags: string[];
 }
 
-export interface Leaf {
-    x: number;
-    y: number;
-    size: number;
-    rotation: number;
-    speed: number;
-    opacity: number;
-}
-
-export interface Snowflake {
-    x: number;
-    y: number;
-    size: number;
-    rotation: number;
-    speed: number;
-    opacity: number;
-}
-
 export interface AnimatedWebsiteProps {
     name: string;
     title: string;

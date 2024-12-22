@@ -26,6 +26,9 @@
             "@styles/*": [
                 "src/styles/*"
             ],
+            "@constants/*": [
+                "src/constants/*"
+            ],
             "@utils/*": [
                 "src/utils/*"
             ],

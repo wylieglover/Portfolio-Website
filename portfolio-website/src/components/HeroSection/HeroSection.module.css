@@ -1,0 +1,84 @@
+@keyframes coolFloat {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(360deg);
+    }
+}
+
+.floatingShape {
+    @apply absolute rounded-full mix-blend-multiply filter blur-xl opacity-70;
+    width: var(--shape-size);
+    height: var(--shape-size);
+    left: var(--shape-left);
+    top: var(--shape-top);
+    transform: rotate(var(--shape-rotate)) scale(var(--shape-scale));
+    transition: transform 0.1s linear;
+    animation: coolFloat 10s infinite ease-in-out;
+}
+
+.container {
+    @apply relative h-screen w-full overflow-hidden;
+}
+
+.canvas {
+    @apply fixed inset-0 pointer-events-none;
+    width: 100%;
+    height: 100%;
+}
+
+.shapesContainer {
+    @apply absolute inset-0 pointer-events-none;
+}
+
+.pinkShape {
+    background-color: #f9a8d4;
+}
+
+.purpleShape {
+    background-color: #c4b5fd;
+}
+
+.content {
+    @apply relative z-10 flex flex-col items-center justify-center h-full text-white;
+}
+
+.title {
+    @apply text-6xl font-bold mb-4 tracking-tight;
+}
+
+.gradientText {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500;
+}
+
+.subtitle {
+    @apply text-xl text-gray-200 max-w-md text-center mb-8;
+}
+
+.button {
+    @apply bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all;
+}
+
+.scrollIndicator {
+    @apply absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center justify-center;
+}
+
+.arrow {
+    @apply w-6 h-6 text-white;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}

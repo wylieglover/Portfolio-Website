@@ -1,13 +1,13 @@
-import { Leaf } from '../../types/types';
+import { LEAF_STYLES, LEAF_CONFIG, LeafStyle, LeafDrawingConfig } from '../../constants/leafConstants';
 
 class LeavesManager {
-    private leaves: Leaf[] = [];
-    private numLeaves: number;
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
+    private leaves: LeafStyle[] = [];
+    private readonly numLeaves: number;
+    private readonly canvas: HTMLCanvasElement;
+    private readonly ctx: CanvasRenderingContext2D;
     private animationFrameId: number | null = null;
 
-    constructor(canvas: HTMLCanvasElement | null, numLeaves = 25) {
+    constructor(canvas: HTMLCanvasElement | null, numLeaves = LEAF_CONFIG.DEFAULT_NUM_LEAVES) {
         if (!canvas) {
             throw new Error('Canvas element is null');
         }
@@ -24,70 +24,79 @@ class LeavesManager {
         this.initLeaves();
     }
 
-    private setCanvasSize() {
+    private setCanvasSize(): void {
         const { devicePixelRatio } = window;
+        const { innerWidth, innerHeight } = window;
 
-        // Adjust canvas size for the viewport
-        this.canvas.width = window.innerWidth * devicePixelRatio;
-        this.canvas.height = window.innerHeight * devicePixelRatio;
-
-        // Scale the drawing context for high-DPI screens
+        this.canvas.width = innerWidth * devicePixelRatio;
+        this.canvas.height = innerHeight * devicePixelRatio;
         this.ctx.scale(devicePixelRatio, devicePixelRatio);
     }
 
-    private initLeaves() {
-        const baseSize = 10;
-        const sizeVariance = 15;
-
-        this.leaves = Array.from({ length: this.numLeaves }).map(() => ({
+    private createLeaf(): LeafStyle {
+        return {
             x: Math.random() * this.canvas.width,
-            y: Math.random() * -this.canvas.height, // Start off-screen above
-            size: baseSize + Math.random() * sizeVariance, // Consistent size range
+            y: Math.random() * -this.canvas.height,
+            size: LEAF_STYLES.BASE_SIZE + Math.random() * LEAF_STYLES.SIZE_VARIANCE,
             rotation: Math.random() * Math.PI * 2,
-            speed: 1 + Math.random() * 2,
-            opacity: 0.3 + Math.random() * 0.3, // Vary opacity
-        }));
+            speed: LEAF_STYLES.MIN_SPEED + Math.random() * (LEAF_STYLES.MAX_SPEED - LEAF_STYLES.MIN_SPEED),
+            opacity: LEAF_STYLES.MIN_OPACITY + Math.random() * (LEAF_STYLES.MAX_OPACITY - LEAF_STYLES.MIN_OPACITY),
+        };
     }
 
-    private drawLeaves() {
+    private initLeaves(): void {
+        this.leaves = Array.from(
+            { length: this.numLeaves },
+            () => this.createLeaf()
+        );
+    }
+
+    private updateLeafPosition(leaf: LeafStyle): void {
+        leaf.x += leaf.speed * LEAF_STYLES.HORIZONTAL_DRIFT;
+        leaf.y += leaf.speed;
+        leaf.rotation += LEAF_STYLES.ROTATION_SPEED;
+
+        if (leaf.y > this.canvas.height) {
+            Object.assign(leaf, this.createLeaf());
+        }
+    }
+
+    private drawLeaf({ ctx, leaf }: LeafDrawingConfig): void {
+        ctx.save();
+        ctx.globalAlpha = leaf.opacity;
+        ctx.translate(leaf.x, leaf.y);
+        ctx.rotate(leaf.rotation);
+        ctx.scale(LEAF_STYLES.SCALE_X, LEAF_STYLES.SCALE_Y);
+
+        ctx.beginPath();
+        ctx.moveTo(0, -leaf.size / 2);
+        ctx.bezierCurveTo(
+            leaf.size / 3, -leaf.size / 4,
+            leaf.size / 2, leaf.size / 4,
+            0, leaf.size / 2
+        );
+        ctx.bezierCurveTo(
+            -leaf.size / 2, leaf.size / 4,
+            -leaf.size / 3, -leaf.size / 4,
+            0, -leaf.size / 2
+        );
+
+        ctx.fillStyle = LEAF_STYLES.COLOR;
+        ctx.filter = `blur(${LEAF_STYLES.BLUR})`;
+        ctx.fill();
+        ctx.restore();
+    }
+
+    private drawLeaves(): void {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.leaves.forEach(leaf => {
-            leaf.x += leaf.speed * 0.7; // Move diagonally
-            leaf.y += leaf.speed; // Move downward
-            leaf.rotation += 0.01; // Slight rotation
-
-            if (leaf.y > this.canvas.height) {
-                leaf.y = -leaf.size; // Reset position above the canvas
-                leaf.x = Math.random() * this.canvas.width;
-            }
-
-            this.ctx.save();
-            this.ctx.globalAlpha = leaf.opacity;
-            this.ctx.translate(leaf.x, leaf.y);
-            this.ctx.rotate(leaf.rotation);
-            this.ctx.scale(0.8, 1);
-
-            this.ctx.beginPath();
-            this.ctx.moveTo(0, -leaf.size / 2);
-            this.ctx.bezierCurveTo(
-                leaf.size / 3, -leaf.size / 4,
-                leaf.size / 2, leaf.size / 4,
-                0, leaf.size / 2
-            );
-            this.ctx.bezierCurveTo(
-                -leaf.size / 2, leaf.size / 4,
-                -leaf.size / 3, -leaf.size / 4,
-                0, -leaf.size / 2
-            );
-            this.ctx.fillStyle = 'white';
-            this.ctx.filter = 'blur(2px)';
-            this.ctx.fill();
-            this.ctx.restore();
+            this.updateLeafPosition(leaf);
+            this.drawLeaf({ ctx: this.ctx, leaf });
         });
     }
 
-    public startAnimation() {
+    public startAnimation(): void {
         const animate = () => {
             this.drawLeaves();
             this.animationFrameId = requestAnimationFrame(animate);
@@ -96,24 +105,20 @@ class LeavesManager {
         animate();
     }
 
-    public stopAnimation() {
+    public stopAnimation(): void {
         if (this.animationFrameId) {
             cancelAnimationFrame(this.animationFrameId);
             this.animationFrameId = null;
         }
     }
 
-    public resizeCanvas() {
-        // Centralize size adjustment and reinitialize leaves
+    public resizeCanvas(): void {
         this.setCanvasSize();
         this.initLeaves();
     }
 
-    public attachResizeListener() {
-        const resizeHandler = () => {
-            this.resizeCanvas();
-        };
-
+    public attachResizeListener(): () => void {
+        const resizeHandler = this.resizeCanvas.bind(this);
         window.addEventListener('resize', resizeHandler);
 
         return () => {

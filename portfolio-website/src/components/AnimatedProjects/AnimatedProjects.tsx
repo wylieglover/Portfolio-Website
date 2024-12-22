@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import { Project } from '../../types/types';
-import './AnimatedProjects.css';
+import { Project } from '../../types/props';
+import './AnimatedProjects.module.css';
 
 const AnimatedProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {
     const projectRefs = useRef<HTMLDivElement[]>([]);
@@ -38,8 +38,7 @@ const AnimatedProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {
                     ref={el => {
                         projectRefs.current[index] = el!;
                     }}
-                    className="project-box bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 transform opacity-0 transition-transform duration-700"
-                    style={{ transitionDelay: `${index * 150}ms` }}
+                    className={`project-box project-delay-${index} bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 transform opacity-0 transition-transform duration-700`}
                 >
                     <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
                     <p className="text-gray-400 mb-4">{project.description}</p>

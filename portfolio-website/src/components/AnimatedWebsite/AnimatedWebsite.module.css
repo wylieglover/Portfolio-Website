@@ -1,15 +1,30 @@
-@keyframes coolFloat {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-15px) rotate(180deg);
-    }
-    100% {
-        transform: translateY(0px) rotate(360deg);
-    }
+.container {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
-.floating-shape {
-    animation: coolFloat 10s infinite ease-in-out;
+.contentWrapper {
+    position: relative;
+    inset: 0;
+    background: linear-gradient(to bottom right, #9333ea, #ec4899, #f97316);
+}
+
+.projectsSection {
+    position: relative;
+    min-height: 100vh;
+    padding: 5rem 1rem;
+}
+
+.projectsContainer {
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+.projectsTitle {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 3rem;
+    text-align: center;
 }

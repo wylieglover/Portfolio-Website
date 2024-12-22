@@ -1,60 +1,60 @@
-// HeroSection.tsx
-import React from 'react';
-import { HeroSectionProps } from '../../types/types';
+import React, { useCallback } from 'react';
+import { HeroSectionProps } from '../../types/props';
+import styles from './HeroSection.module.css';
 
 const HeroSection: React.FC<HeroSectionProps> = ({ name, title, scrollY, canvasRef }) => {
+    const handleViewWork = useCallback(() => {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    }, []);
+
+    const renderFloatingShapes = () => {
+        return [...Array(5)].map((_, i) => (
+            <div
+                key={i}
+                className={`${styles.floatingShape} ${i % 2 === 0 ? styles.pinkShape : styles.purpleShape}`}
+                style={{
+                    '--shape-size': `${100 + i * 50}px`,
+                    '--shape-left': `${(i * 20) + 10}%`,
+                    '--shape-top': `${10 + i * 10}%`,
+                    '--shape-rotate': `${scrollY * (0.05 + i * 0.02)}deg`,
+                    '--shape-scale': `${Math.max(0.5, 1 - scrollY / 3000)}`,
+                } as React.CSSProperties}
+            />
+        ));
+    };
+
     return (
-        <div className="relative h-screen w-full overflow-hidden">
+        <div className={styles.container}>
             <canvas
                 ref={canvasRef}
-                className="fixed inset-0 pointer-events-none"
-                style={{
-                    width: '100%',
-                    height: '100%',
-                }}
+                className={styles.canvas}
             />
 
-            {/* Floating shapes */}
-            <div className="absolute inset-0 pointer-events-none">
-                {[...Array(5)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-shape"
-                        style={{
-                            backgroundColor: i % 2 === 0 ? '#f9a8d4' : '#c4b5fd',
-                            width: `${100 + i * 50}px`,
-                            height: `${100 + i * 50}px`,
-                            left: `${(i * 20) + 10}%`,
-                            top: `${10 + i * 10}%`,
-                            transform: `rotate(${scrollY * (0.05 + i * 0.02)}deg) scale(${Math.max(0.5, 1 - scrollY / 3000)})`,
-                            transition: 'transform 0.1s linear',
-                        }}
-                    />
-                ))}
+            <div className={styles.shapesContainer}>
+                {renderFloatingShapes()}
             </div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-                <h1 className="text-6xl font-bold mb-4 tracking-tight">
+            <div className={styles.content}>
+                <h1 className={styles.title}>
                     Hello, I'm{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
+                    <span className={styles.gradientText}>
                         {name}
                     </span>
                 </h1>
-                <p className="text-xl text-gray-200 max-w-md text-center mb-8">
+                <p className={styles.subtitle}>
                     {title}
                 </p>
                 <button
-                    onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-                    className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-full backdrop-blur-sm transition-all"
+                    onClick={handleViewWork}
+                    className={styles.button}
                 >
                     View My Work
                 </button>
             </div>
 
-            {/* Bouncing Arrow */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+            <div className={styles.scrollIndicator}>
                 <svg
-                    className="w-6 h-6 text-white animate-bounce"
+                    className={styles.arrow}
                     fill="none"
                     strokeWidth="2"
                     viewBox="0 0 24 24"

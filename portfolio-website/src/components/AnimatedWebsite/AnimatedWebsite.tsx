@@ -1,7 +1,7 @@
 // AnimatedWebsite.tsx
-import React, { useState, useEffect, useRef } from 'react';
-import { AnimatedWebsiteProps } from '../../types/types';
-import './AnimatedWebsite.module.css';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { AnimatedWebsiteProps } from '../../types/props';
+import styles from './AnimatedWebsite.module.css';
 
 // import LeavesManager from '../LeavesManager/LeavesManager';
 import SnowflakesManager from '../SnowflakesManager';
@@ -18,52 +18,60 @@ const AnimatedWebsite: React.FC<AnimatedWebsiteProps> = ({
     // const leavesManagerRef = useRef<LeavesManager | null>(null);
     const snowflakesManagerRef = useRef<SnowflakesManager | null>(null);
 
-    useEffect(() => {
-        if (canvasRef.current) {
-            // Initialize LeavesManager with the canvas
-            snowflakesManagerRef.current = new SnowflakesManager(canvasRef.current);
-
-            // Start the animation
-            snowflakesManagerRef.current.startAnimation();
-
-            // Attach resize listener
-            const cleanupResize = snowflakesManagerRef.current.attachResizeListener();
-
-            // Cleanup on unmount
-            return () => {
-                snowflakesManagerRef.current?.stopAnimation();
-                cleanupResize();
-            };
+    // Memoize scroll handler to prevent unnecessary re-renders
+    const handleScroll = useCallback(() => {
+        const currentScrollY = window.scrollY;
+        // Only update state if the scroll position has changed significantly
+        if (Math.abs(currentScrollY - scrollY) > 5) {
+            setScrollY(currentScrollY);
         }
+    }, [scrollY]);
+
+    // Initialize SnowflakesManager
+    useEffect(() => {
+        if (!canvasRef.current) return;
+
+        const canvas = canvasRef.current;
+        snowflakesManagerRef.current = new SnowflakesManager(canvas);
+        snowflakesManagerRef.current.startAnimation();
+
+        const cleanupResize = snowflakesManagerRef.current.attachResizeListener();
+
+        return () => {
+            snowflakesManagerRef.current?.stopAnimation();
+            cleanupResize();
+            snowflakesManagerRef.current = null;
+        };
     }, []);
 
+    // Handle scroll events
     useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        };
-
-        window.addEventListener('scroll', handleScroll);
+        // Use passive listener for better scroll performance
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [handleScroll]);
 
     return (
-        <div className="min-h-screen overflow-hidden relative">
-            {/* Content container */}
-            <div className="relative inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400">
-                {/* Hero Section */}
-                <HeroSection name={name} title={title} scrollY={scrollY} canvasRef={canvasRef} />
+        <div className={styles.container}>
+            <div className={styles.contentWrapper}>
+                <HeroSection
+                    name={name}
+                    title={title}
+                    scrollY={scrollY}
+                    canvasRef={canvasRef}
+                />
 
-                <div className="relative min-h-screen py-20 px-4">
-                    <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl font-bold text-white mb-12 text-center">
+                <section className={styles.projectsSection}>
+                    <div className={styles.projectsContainer}>
+                        <h2 className={styles.projectsTitle}>
                             My Projects
                         </h2>
                         <AnimatedProjects projects={projects} />
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     );

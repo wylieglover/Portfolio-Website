@@ -1,13 +1,18 @@
-import { Snowflake } from '../../types/types';
+import {
+    SNOWFLAKE_STYLES,
+    SNOWFLAKE_CONFIG,
+    SnowflakeStyle,
+    SnowflakeDrawingConfig
+} from '../../constants/snowflakeConstants';
 
 class SnowflakesManager {
-    private snowflakes: Snowflake[] = [];
-    private numSnowflakes: number;
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
+    private snowflakes: SnowflakeStyle[] = [];
+    private readonly numSnowflakes: number;
+    private readonly canvas: HTMLCanvasElement;
+    private readonly ctx: CanvasRenderingContext2D;
     private animationFrameId: number | null = null;
 
-    constructor(canvas: HTMLCanvasElement | null, numSnowflakes = 50) {
+    constructor(canvas: HTMLCanvasElement | null, numSnowflakes = SNOWFLAKE_CONFIG.DEFAULT_NUM_SNOWFLAKES) {
         if (!canvas) {
             throw new Error('Canvas element is null');
         }
@@ -24,62 +29,48 @@ class SnowflakesManager {
         this.initSnowflakes();
     }
 
-    private setCanvasSize() {
+    private setCanvasSize(): void {
         const { devicePixelRatio } = window;
+        const { innerWidth, innerHeight } = window;
 
-        // Adjust canvas size for the viewport
-        this.canvas.width = window.innerWidth * devicePixelRatio;
-        this.canvas.height = window.innerHeight * devicePixelRatio;
-
-        // Scale the drawing context for high-DPI screens
+        this.canvas.width = innerWidth * devicePixelRatio;
+        this.canvas.height = innerHeight * devicePixelRatio;
         this.ctx.scale(devicePixelRatio, devicePixelRatio);
     }
 
-    private initSnowflakes() {
-        const baseSize = 10;
-        const sizeVariance = 15;
-
-        this.snowflakes = Array.from({ length: this.numSnowflakes }).map(() => ({
+    private createSnowflake(): SnowflakeStyle {
+        return {
             x: Math.random() * this.canvas.width,
-            y: Math.random() * -this.canvas.height, // Start off-screen above
-            size: baseSize + Math.random() * sizeVariance,
+            y: Math.random() * -this.canvas.height,
+            size: SNOWFLAKE_STYLES.BASE_SIZE + Math.random() * SNOWFLAKE_STYLES.SIZE_VARIANCE,
             rotation: Math.random() * Math.PI * 2,
-            speed: 0.5 + Math.random() * 1.5,
-            opacity: 0.5 + Math.random() * 0.5,
-        }));
+            speed: SNOWFLAKE_STYLES.MIN_SPEED + Math.random() * (SNOWFLAKE_STYLES.MAX_SPEED - SNOWFLAKE_STYLES.MIN_SPEED),
+            opacity: SNOWFLAKE_STYLES.MIN_OPACITY + Math.random() * (SNOWFLAKE_STYLES.MAX_OPACITY - SNOWFLAKE_STYLES.MIN_OPACITY),
+        };
     }
 
-    private drawSnowflakes() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.snowflakes.forEach(snowflake => {
-            snowflake.x += snowflake.speed * 0.3; // Subtle horizontal drift
-            snowflake.y += snowflake.speed; // Fall vertically
-
-            // Reset position when it goes out of bounds
-            if (snowflake.y > this.canvas.height) {
-                snowflake.y = -snowflake.size; // Reset above the canvas
-                snowflake.x = Math.random() * this.canvas.width;
-            }
-
-            this.ctx.save();
-            this.ctx.globalAlpha = snowflake.opacity;
-            this.ctx.translate(snowflake.x, snowflake.y);
-            this.ctx.rotate(snowflake.rotation);
-
-            this.drawSnowflake(this.ctx, snowflake.size);
-
-            this.ctx.restore();
-        });
+    private initSnowflakes(): void {
+        this.snowflakes = Array.from(
+            { length: this.numSnowflakes },
+            () => this.createSnowflake()
+        );
     }
 
-    private drawSnowflake(ctx: CanvasRenderingContext2D, size: number) {
-        const branches = 6;
-        const radius = size / 2;
+    private updateSnowflakePosition(snowflake: SnowflakeStyle): void {
+        snowflake.x += snowflake.speed * SNOWFLAKE_STYLES.HORIZONTAL_DRIFT;
+        snowflake.y += snowflake.speed;
+
+        if (snowflake.y > this.canvas.height) {
+            Object.assign(snowflake, this.createSnowflake());
+        }
+    }
+
+    private drawSnowflakeBranches(ctx: CanvasRenderingContext2D, radius: number): void {
+        const { BRANCHES, SIDE_BRANCHES, BRANCH_ANGLE, BRANCH_LENGTH_RATIO } = SNOWFLAKE_STYLES;
 
         ctx.beginPath();
-        for (let i = 0; i < branches; i++) {
-            const angle = ((Math.PI * 2) / branches) * i;
+        for (let i = 0; i < BRANCHES; i++) {
+            const angle = ((Math.PI * 2) / BRANCHES) * i;
 
             // Main branch
             const x1 = Math.cos(angle) * radius;
@@ -88,9 +79,9 @@ class SnowflakesManager {
             ctx.lineTo(x1, y1);
 
             // Side branches
-            for (let j = 1; j <= 2; j++) {
-                const branchLength = radius / 3;
-                const branchAngle = angle - (Math.PI / 12) * j;
+            for (let j = 1; j <= SIDE_BRANCHES; j++) {
+                const branchLength = radius * BRANCH_LENGTH_RATIO;
+                const branchAngle = angle - BRANCH_ANGLE * j;
                 const bx1 = x1 * (1 - j / 3);
                 const by1 = y1 * (1 - j / 3);
                 const bx2 = bx1 + Math.cos(branchAngle) * branchLength;
@@ -101,14 +92,43 @@ class SnowflakesManager {
             }
         }
         ctx.closePath();
-        ctx.strokeStyle = 'white';
-        ctx.lineWidth = 2;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+    }
+
+    private applySnowflakeStyles(ctx: CanvasRenderingContext2D): void {
+        ctx.strokeStyle = SNOWFLAKE_STYLES.COLOR;
+        ctx.lineWidth = SNOWFLAKE_STYLES.LINE_WIDTH;
+        ctx.shadowBlur = SNOWFLAKE_STYLES.SHADOW_BLUR;
+        ctx.shadowColor = SNOWFLAKE_STYLES.SHADOW_COLOR;
+    }
+
+    private drawSingleSnowflake({ ctx, size }: SnowflakeDrawingConfig): void {
+        const radius = size / 2;
+        this.drawSnowflakeBranches(ctx, radius);
+        this.applySnowflakeStyles(ctx);
         ctx.stroke();
     }
 
-    public startAnimation() {
+    private drawSnowflakes(): void {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.snowflakes.forEach(snowflake => {
+            this.updateSnowflakePosition(snowflake);
+
+            this.ctx.save();
+            this.ctx.globalAlpha = snowflake.opacity;
+            this.ctx.translate(snowflake.x, snowflake.y);
+            this.ctx.rotate(snowflake.rotation);
+
+            this.drawSingleSnowflake({
+                ctx: this.ctx,
+                size: snowflake.size
+            });
+
+            this.ctx.restore();
+        });
+    }
+
+    public startAnimation(): void {
         const animate = () => {
             this.drawSnowflakes();
             this.animationFrameId = requestAnimationFrame(animate);
@@ -117,23 +137,20 @@ class SnowflakesManager {
         animate();
     }
 
-    public stopAnimation() {
+    public stopAnimation(): void {
         if (this.animationFrameId) {
             cancelAnimationFrame(this.animationFrameId);
             this.animationFrameId = null;
         }
     }
 
-    public resizeCanvas() {
+    public resizeCanvas(): void {
         this.setCanvasSize();
         this.initSnowflakes();
     }
 
-    public attachResizeListener() {
-        const resizeHandler = () => {
-            this.resizeCanvas();
-        };
-
+    public attachResizeListener(): () => void {
+        const resizeHandler = this.resizeCanvas.bind(this);
         window.addEventListener('resize', resizeHandler);
 
         return () => {

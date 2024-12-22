@@ -1,0 +1,28 @@
+.project-box {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    will-change: transform, opacity; /* Hint to the browser */
+}
+
+.project-box.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-delay-0 { transition-delay: 0ms; }
+.project-delay-1 { transition-delay: 150ms; }
+.project-delay-2 { transition-delay: 300ms; }
+.project-delay-3 { transition-delay: 450ms; }
+.project-delay-4 { transition-delay: 600ms; }
+.project-delay-5 { transition-delay: 750ms; }
+.project-delay-6 { transition-delay: 900ms; }
+.project-delay-7 { transition-delay: 1050ms; }
+.project-delay-8 { transition-delay: 1200ms; }
+.project-delay-9 { transition-delay: 1350ms; }
+.project-delay-10 { transition-delay: 1500ms; }
+.project-delay-11 { transition-delay: 1650ms; }
+.project-delay-12 { transition-delay: 1800ms; }
+.project-delay-13 { transition-delay: 1950ms; }
+.project-delay-14 { transition-delay: 2100ms; }
+.project-delay-15 { transition-delay: 2250ms; }
