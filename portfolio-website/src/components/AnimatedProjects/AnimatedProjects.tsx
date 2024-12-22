@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-
 import { Project } from '../../types/props';
-import './AnimatedProjects.module.css';
+import './AnimatedProjects.css';
 
 const AnimatedProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {
     const projectRefs = useRef<HTMLDivElement[]>([]);
@@ -43,7 +42,7 @@ const AnimatedProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {
                     <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
                     <p className="text-gray-400 mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag, tagIndex) => (
+                        {project.tags.map((tag: string, tagIndex: number) => (
                             <span
                                 key={tagIndex}
                                 className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm"
@@ -53,10 +52,10 @@ const AnimatedProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {
                         ))}
                     </div>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     );
 };
 
 export default AnimatedProjects;
-

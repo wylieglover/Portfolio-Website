@@ -1,3 +1,19 @@
+@keyframes coolFloat {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(360deg);
+    }
+}
+
+.floating-shape {
+    animation: coolFloat 10s infinite ease-in-out;
+}
+
 .container {
     min-height: 100vh;
     overflow: hidden;
