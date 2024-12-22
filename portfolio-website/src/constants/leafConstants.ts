@@ -1,5 +1,3 @@
-// src/constants/leafStyles.ts
-
 export const LEAF_STYLES = {
     BASE_SIZE: 10,
     SIZE_VARIANCE: 15,

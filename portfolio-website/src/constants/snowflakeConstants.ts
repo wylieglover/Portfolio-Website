@@ -1,5 +1,3 @@
-// src/constants/snowflakeStyles.ts
-
 export const SNOWFLAKE_STYLES = {
     BASE_SIZE: 10,
     SIZE_VARIANCE: 15,

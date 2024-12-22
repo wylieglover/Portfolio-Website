@@ -3,9 +3,11 @@ services:
     container_name: portfolio-website
     restart: unless-stopped
     build: .
-    command: npm start
+    environment:
+      - NODE_ENV=production
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - 3000:3000
+    command: [ "serve", "-s", "build" ]

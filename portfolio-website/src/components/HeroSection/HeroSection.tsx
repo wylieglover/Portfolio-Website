@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { HeroSectionProps } from '../../types/props';
+import { HeroSectionProps } from '../../types/types';
 import styles from './HeroSection.module.css';
 
 const HeroSection: React.FC<HeroSectionProps> = ({ name, title, scrollY, canvasRef }) => {

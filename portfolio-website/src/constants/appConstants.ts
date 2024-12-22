@@ -1,4 +1,3 @@
-// myProjects.ts
 const myProjects = [
     {
         title: "Viz Data Academy",
@@ -42,4 +41,8 @@ const myProjects = [
     },
 ];
 
-export default myProjects;
+export const SITE_CONFIG = {
+    name: "Wylie Glover",
+    title: "Software Engineer & Website Designer | Recent graduate | Nvidia certified associate with AI/LLMs",
+    projects: myProjects,
+};
