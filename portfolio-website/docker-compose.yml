@@ -10,4 +10,4 @@ services:
       - /app/node_modules
     ports:
       - 3000:3000
-    command: [ "serve", "-s", "build" ]
+    command: serve -s build -l 3000
