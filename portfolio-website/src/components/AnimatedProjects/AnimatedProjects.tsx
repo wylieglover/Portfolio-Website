@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import { Project } from '../AnimatedWebsite/types';
+import { Project } from '../../types/types';
 import './AnimatedProjects.css';
 
 const AnimatedProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {

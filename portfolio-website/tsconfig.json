@@ -1,29 +1,52 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "ES2024",
         "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
         ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
+        "allowJs": false, // Disallow JavaScript files to ensure TypeScript-only project
+        "skipLibCheck": true, // Skip type-checking of library declaration files for performance
+        "strict": true, // Enable all strict type-checking options
+        "forceConsistentCasingInFileNames": true, // Enforce consistent file name casing
+        "esModuleInterop": true, // Enable compatibility with CommonJS modules
+        "module": "ESNext", // Use ESNext module resolution
+        "moduleResolution": "Node", // Resolve modules like Node.js
+        "resolveJsonModule": true, // Allow importing JSON files
+        "isolatedModules": true, // Isolate each module for compatibility with Babel
         "jsx": "react-jsx",
-        "types": [
-            "styled-jsx"
-        ] // Add this line
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": "./",
+        "paths": {
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@styles/*": [
+                "src/styles/*"
+            ],
+            "@utils/*": [
+                "src/utils/*"
+            ],
+            "@types/*": [
+                "src/types/*"
+            ],
+            "@assets/*": [
+                "src/assets/*"
+            ]
+        },
+        "outDir": "./dist",
+        "incremental": true
     },
     "include": [
-        "src",
-        "types"
+        "src"
+    ],
+    "exclude": [
+        "node_modules", // Exclude dependencies
+        "**/*.test.ts", // Exclude test files
+        "**/*.test.tsx", // Exclude test files
+        "dist", // Exclude build output
+        "coverage" // Exclude coverage reports
     ]
 }
