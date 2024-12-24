@@ -1,9 +1,9 @@
 const myProjects = [
     {
-        title: "Reddit Bot",
-        description: "This project automates the creation of subtitled story videos for TikTok.",
+        title: "AI Content Detector",
+        description: "The tool uses a combination of algorithms to provide probabilities based on the features and the content provided.",
         tags: ["Python"],
-        link: "https://github.com/wylieglover/reddit_bot",
+        link: "https://github.com/wylieglover/AI-Content-Detector",
     },
     {
         title: "Viz Data Academy",
