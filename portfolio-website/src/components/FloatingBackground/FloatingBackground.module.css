@@ -4,21 +4,21 @@
 }
 
 .floatingShapes {
-  @apply absolute rounded-full opacity-70;
+  @apply absolute rounded-full opacity-50;
   width: var(--shape-size);
   height: var(--shape-size);
   left: var(--shape-left);
   top: var(--shape-top);
   transform: rotate(var(--shape-rotate)) scale(var(--shape-scale));
   transition: transform 0.1s linear;
-  filter: blur(50px);
+  filter: blur(25px);
   will-change: transform;
 }
 
 .pinkShape {
-  background-color: #fb7185; /* More saturated pink */
+  background-color:rgb(255, 149, 165); /* More saturated pink */
 }
 
 .purpleShape {
-  background-color: #a78bfa; /* More saturated purple */
+  background-color:rgb(89, 37, 245); /* More saturated purple */
 }

@@ -6,7 +6,7 @@ import SnowflakesManager from './components/SnowflakesManager';
 import AnimatedProjects from './components/AnimatedProjects';
 import HeroSection from './components/HeroSection';
 import FloatingBackground from './components/FloatingBackground';
-// import ResumeSection from './components/ResumeSection/ResumeSection'; 
+import ResumeSection from './components/ResumeSection/ResumeSection';
 
 const App = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -44,7 +44,6 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-
       <div className={styles.backgroundLayer}>
         <FloatingBackground scrollY={scrollY} />
         <canvas
@@ -52,23 +51,15 @@ const App = () => {
           className={styles.canvas}
         />
       </div>
-
       <div className={styles.contentLayer}>
         <HeroSection
           name={SITE_CONFIG.name}
           title={SITE_CONFIG.title}
         />
+        <AnimatedProjects projects={SITE_CONFIG.projects} />
+        <ResumeSection />
 
-        <section className={styles.projectsSection}>
-          <div className={styles.projectsContainer}>
-            <h2 className={styles.projectsTitle}>
-              My Projects
-            </h2>
-            <AnimatedProjects projects={SITE_CONFIG.projects} />
-          </div>
-        </section>
       </div>
-
     </div>
   );
 };

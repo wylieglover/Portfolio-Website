@@ -3,6 +3,7 @@
     overflow: hidden;
     position: relative;
     pointer-events: none;
+    text-align: center; /* Ensures text is centered horizontally */
 }
 
 .canvas {
@@ -21,6 +22,8 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+    background-size: cover; /* Ensures it fills the space */
+    background-position: center; /* Centers the background */
 }
 
 .contentLayer {
@@ -29,21 +32,38 @@
     z-index: 1;
 }
 
-.projectsSection {
-    position: relative;
-    min-height: 100vh;
-    padding: 5rem 1rem;
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem; /* Reduce padding on smaller screens */
+    }
+
+    .contentLayer {
+        padding: 0.5rem; /* Reduce padding for mobile content */
+    }
+
+    .canvas {
+        height: auto; /* Adjust height for mobile */
+    }
+
+    .backgroundLayer {
+        height: 100%; /* Ensure background covers content */
+        width: 100%; /* Ensure background covers content */
+    }
 }
 
-.projectsContainer {
-    max-width: 72rem;
-    margin: 0 auto;
-}
+/* Very small screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0.25rem; /* Minimal padding for very small screens */
+    }
 
-.projectsTitle {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 3rem;
-    text-align: center;
+    .contentLayer {
+        padding: 0.25rem;
+    }
+    .backgroundLayer {
+        height: 100%; /* Ensure background covers content */
+        width: 100%; /* Ensure background covers content */
+    }
+    
 }
