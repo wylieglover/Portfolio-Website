@@ -1,33 +1,7 @@
+/* HeroSection.module.css */
+
 .container {
     @apply relative h-screen w-full overflow-hidden;
-}
-
-.canvas {
-    @apply fixed inset-0 pointer-events-none;
-    width: 100%;
-    height: 100%;
-}
-
-.shapesContainer {
-    @apply absolute inset-0 pointer-events-none;
-}
-
-.floatingShape {
-    @apply absolute rounded-full mix-blend-multiply filter blur-xl opacity-70;
-    width: var(--shape-size);
-    height: var(--shape-size);
-    left: var(--shape-left);
-    top: var(--shape-top);
-    transform: rotate(var(--shape-rotate)) scale(var(--shape-scale));
-    transition: transform 0.1s linear;
-}
-
-.pinkShape {
-    background-color: #f9a8d4;
-}
-
-.purpleShape {
-    background-color: #c4b5fd;
 }
 
 .content {

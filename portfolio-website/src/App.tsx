@@ -1,4 +1,3 @@
-// App.tsx or your page component
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles/App.module.css';
 import { SITE_CONFIG } from './constants/appConstants';
@@ -6,6 +5,8 @@ import { SITE_CONFIG } from './constants/appConstants';
 import SnowflakesManager from './components/SnowflakesManager';
 import AnimatedProjects from './components/AnimatedProjects';
 import HeroSection from './components/HeroSection';
+import FloatingBackground from './components/FloatingBackground';
+// import ResumeSection from './components/ResumeSection/ResumeSection'; 
 
 const App = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -43,12 +44,19 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.contentWrapper}>
+
+      <div className={styles.backgroundLayer}>
+        <FloatingBackground scrollY={scrollY} />
+        <canvas
+          ref={canvasRef}
+          className={styles.canvas}
+        />
+      </div>
+
+      <div className={styles.contentLayer}>
         <HeroSection
           name={SITE_CONFIG.name}
           title={SITE_CONFIG.title}
-          scrollY={scrollY}
-          canvasRef={canvasRef}
         />
 
         <section className={styles.projectsSection}>
@@ -60,6 +68,7 @@ const App = () => {
           </div>
         </section>
       </div>
+
     </div>
   );
 };

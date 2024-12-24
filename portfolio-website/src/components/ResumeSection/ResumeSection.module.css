@@ -1,0 +1,296 @@
+/* ===== Visibility Animation ===== */
+.animatedItem {
+  opacity: 0; /* Start fully transparent */
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.7s ease;
+}
+
+/* This needs to be in your module.css file and referenced with styles.visible */
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+
+.resume-delay-0 { transition-delay: 0ms; }
+.resume-delay-1 { transition-delay: 150ms; }
+.resume-delay-2 { transition-delay: 300ms; }
+.resume-delay-3 { transition-delay: 450ms; }
+.resume-delay-4 { transition-delay: 600ms; }
+.resume-delay-5 { transition-delay: 750ms; }
+.resume-delay-6 { transition-delay: 900ms; }
+.resume-delay-7 { transition-delay: 1050ms; }
+.resume-delay-8 { transition-delay: 1200ms; }
+.resume-delay-9 { transition-delay: 1350ms; }
+.resume-delay-10 { transition-delay: 1500ms; }
+.resume-delay-11 { transition-delay: 1650ms; }
+.resume-delay-12 { transition-delay: 1800ms; }
+.resume-delay-13 { transition-delay: 1950ms; }
+.resume-delay-14 { transition-delay: 2100ms; }
+.resume-delay-15 { transition-delay: 2250ms; }
+
+.hoverEffect {
+  transition: transform 0.7s ease, background-color 0.3s ease;
+}
+
+.hoverEffect:hover {
+  transform: translateY(-5px);
+  background-color: rgba(31, 41, 55, 1); /* Darker hover effect */
+}
+
+
+/* ===== Resume Section Layout ===== */
+.resumeSection {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Center-align text */
+  padding: 2rem;
+  color: white;
+  gap: 2rem; /* Space between sections */
+}
+
+.resumeTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+.sectionsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* ===== Education Section ===== */
+.education h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.education .icon {
+  margin-right: 0.5rem;
+  color: #ff7eb3;
+  font-size: 1.5rem;
+}
+
+.educationItem {
+  background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800/80 */
+  backdrop-filter: blur(8px); /* backdrop-blur-sm */
+  padding: 1.5rem; /* p-6 */
+  margin-bottom: 1.5rem;
+  border-radius: 10px; /* rounded-lg */
+}
+
+.educationItem h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.educationItem h5 {
+  font-size: 1.2rem;
+  color: #ff7eb3;
+  margin-bottom: 0.3rem;
+}
+
+.duration {
+  font-size: 1rem;
+  color: #aaaaaa;
+}
+
+.educationItem p {
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+/* ===== Certifications Section ===== */
+.certifications h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.certifications .icon {
+  margin-right: 0.5rem;
+  color: #ff7eb3;
+  font-size: 1.5rem;
+}
+
+.certificationItem {
+  background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800/80 */
+  backdrop-filter: blur(8px); /* backdrop-blur-sm */
+  padding: 1.5rem; /* p-6 */
+  margin-bottom: 1.5rem;
+  border-radius: 10px; /* rounded-lg */
+}
+
+.certificationItem h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.certificationItem h5 {
+  font-size: 1.2rem;
+  color: #ff7eb3;
+  margin-bottom: 0.3rem;
+}
+
+.certificationItem p {
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+/* ===== Skills Section ===== */
+.skills {
+  grid-column: 1 / -1; /* Make it span across the entire grid row */
+  text-align: center; /* Center the header and items */
+}
+
+.skills h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.skills .icon {
+  margin-right: 0.5rem;
+  color: #ff7eb3;
+  font-size: 1.5rem;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.skillsList li {
+  background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800/80 */
+  backdrop-filter: blur(8px); /* backdrop-blur-sm */
+  padding: 1.5rem; /* p-6 */
+  margin: 0.5rem;
+  border-radius: 20px; /* rounded-lg */
+}
+
+.skillName {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.skillLevel {
+  width: 100%;
+  background-color: #555555;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 10px;
+  position: relative;
+}
+
+.skillLevel::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background-color: #ff758c;
+  width: var(--skill-percentage, 50%); /* Fallback to 50% */
+  transition: width 1s ease-in-out;
+}
+
+.resumeSection.visible .skillLevel::after {
+  width: var(--skill-percentage, 50%);
+}
+
+/* ===== Download Resume Button ===== */
+.downloadResume {
+  grid-column: 1 / -1; /* Center button in its own row */
+  text-align: center;
+  margin-top: 1rem; /* Ensure balanced spacing */
+}
+
+.downloadButton {
+  background-color: #ff7eb3;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  pointer-events: auto;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.downloadButton:hover {
+  background-color: #ff758c;
+  transform: translateY(-3px);
+}
+
+/* ===== Tooltip Styles ===== */
+.certificationItem .tooltip {
+  visibility: hidden;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.certificationItem:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== Responsive Styles ===== */
+@media (min-width: 600px) {
+  .skillsList li {
+    width: 45%;
+  }
+}
+
+@media (min-width: 900px) {
+  .skillsList li {
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .resumeSection {
+    padding: 3rem 1rem;
+  }
+
+  .resumeTitle {
+    font-size: 1.75rem;
+  }
+
+  .education h3,
+  .certifications h3,
+  .skills h3 {
+    font-size: 1.5rem;
+  }
+
+  .educationItem h4,
+  .certificationItem h4 {
+    font-size: 1.25rem;
+  }
+
+  .educationItem h5,
+  .certificationItem h5 {
+    font-size: 1rem;
+  }
+}

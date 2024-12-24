@@ -1,3 +1,7 @@
+export interface FloatingShapesProps {
+    scrollY: number;
+}
+
 export interface Project {
     title: string;
     description: string;
@@ -13,6 +17,4 @@ export interface AnimatedWebsiteProps {
 export interface HeroSectionProps {
     name: string;
     title: string;
-    scrollY: number;
-    canvasRef: React.RefObject<HTMLCanvasElement | null>; // Allow null
 }
