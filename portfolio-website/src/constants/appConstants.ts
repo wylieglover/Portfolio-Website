@@ -1,5 +1,11 @@
 const myProjects = [
     {
+        title: "Reddit Bot",
+        description: "This project automates the creation of subtitled story videos for TikTok.",
+        tags: ["Python"],
+        link: "https://github.com/wylieglover/reddit_bot",
+    },
+    {
         title: "Viz Data Academy",
         description: "Viz Data Academy is a learning platform that provides data visualization and data storytelling.",
         tags: ["Django", "Python", "Docker"],
