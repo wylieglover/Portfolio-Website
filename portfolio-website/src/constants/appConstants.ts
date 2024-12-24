@@ -57,6 +57,6 @@ const myProjects = [
 
 export const SITE_CONFIG = {
     name: "Wylie Glover",
-    title: "Software Engineer & Website Designer | Recent graduate | Nvidia certified associate with AI/LLMs",
+    title: "Full-Stack Developer & UI/UX Designer | Nvidia Certified in AI & LLMs | Recent Graduate",
     projects: myProjects,
 };
